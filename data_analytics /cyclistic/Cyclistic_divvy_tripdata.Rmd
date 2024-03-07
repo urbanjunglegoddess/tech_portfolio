@@ -1,0 +1,416 @@
+---
+title: "Case Study:Cyclistic"
+author: "Omegea Hunter"
+output: html_notebook
+---
+
+
+Load the libraries necessary to read the CSV's of data from Divvy Trip and Stations and  make columns consistent and merge them into a single dataframe.
+```{r Library setup and merge datasets}
+# Load necessary packages
+install.packages("tidyverse")
+install.packages("dplyr")
+install.packages("readr")
+install.packages("lubridate")
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(tibble)
+library(purrr)
+library(forcats)
+library(plyr)
+
+library(scales) # visualization
+library(corrplot) # visualization
+library(GGally) # visualization
+library(ggthemes) # visualization
+library(ggalt) # encircle
+library(maps) #maps
+library(treemap)
+library(ggdendro) # Deprogram
+
+# Interactivity
+library(crosstalk)
+library(plotly)
+
+#Date
+library(scales)
+library(zoo)
+library(lubridate)
+
+
+`# Set the directory containing the CSV files
+directory <- "~/Documents/GitHub/urbanjunglegoddess/projects/data-analytics/How Does a Bike-Share Navigate Speedy Success?/2020-2023 dataset"
+
+# Get the list of CSV files in the directory
+file_list <- list.files(directory, pattern = "\\.csv$", full.names = TRUE)
+
+# Initialize an empty dataframe to store the merged data
+divvy_trips <- data.frame()
+
+# Loop through each CSV file and merge the data
+for (file in file_list) {
+  # Read the CSV file
+  data <- read_csv(file)
+  
+  # Merge the data with the existing divvy_trips data frame
+  divvy_trips <- rbind(divvy_trips, data)
+}
+# Import the divvy_stations csv 
+divvy_stations_ <- read_csv("Datasets/2017/Divvy_Trips_2017_Q3Q4/Divvy_Stations_2017_Q3Q4.csv", 
+    col_types = cols(latitude = col_number(), 
+        longitude = col_number(), dpcapacity = col_integer(), 
+        online_date = col_datetime(format = "%m/%d/%Y %H:%M"), 
+        ...8 = col_skip()))
+View(divvy_stations_)
+
+# View the merged data
+View(divvy_trips)
+colnames(divvy_trips)
+colnames(divvy_stations_)
+head(divvy_trips)
+head(divvy_stations_)
+```
+
+Add columns into the data frame named: start_date, start_time, stop_date,
+stop_time,ride_length,season(time of the year),and day_of_the_week. 
+```{r Adding columns }
+
+# Extract season based on the month of the start_date
+ 
+   divvy_trips$season <- case_when(
+    month(divvy_trips$start_date) %in% c(12, 1, 2) ~ "Winter",
+    month(divvy_trips$start_date) %in% c(3, 4, 5) ~ "Spring",
+    month(divvy_trips$start_date) %in% c(6, 7, 8) ~ "Summer",
+    month(divvy_trips$start_date) %in% c(9, 10, 11) ~ "Fall",
+    TRUE ~ "Unknown"
+    )
+
+# Extract day_of_the_week from start_date
+ 
+    divvy_trips$day_of_the_week <- weekdays(divvy_trips$start_date)
+
+# Calculate the ride_length in minutes
+  
+    divvy_trips$ride_length <- as.integer(difftime(divvy_trips$stop_time, divvy_trips$start_time, units = "mins"))
+
+# View the modified dataframe
+    
+    View(divvy_trips)
+
+```
+
+Clean up and add data to prepare for analysis.
+```{r Create a new dataframe to clean against the main dataframe}
+
+#Create a new dataframe
+divvy_trips_v2 <-divvy_trips
+
+#Remove rows that have information missing 
+divvy_trips_v2 <- drop_na(divvy_trips_v2)
+
+#Remove Duplicates 
+divvy_trips_v2 <- unique(divvy_trips_v2)
+```
+
+
+Find the outliers
+```{r Find the oultiers in the columns}
+#Fix the rides that are not a positive number
+divvy_trips_v2 <- divvy_trips_v2[divvy_trips_v2$ride_length >= 0,]
+
+```
+
+
+Changing the data types
+
+```{r changing the data types}
+#Change the start_station_id into a integer 
+divvy_trips$start_station_id <- as.integer(divvy_trips$start_station_id)
+
+#Change the end_station_id into a integer 
+divvy_trips$end_station_id <-as.integer(divvy_trips$end_station_id)
+
+```
+
+
+  Handle missing values 
+    
+Find in the start_station_name by their longitude and latitude with the start_lat and the start_lat using the divvy_stations dataset(Use the divvy_trips dataset)
+```{r Find start_station_id by lat and log}
+    # Filter divvy_trips based on matching start_lat/start_lng in divvy_stations
+matched_stations <- divvy_trips %>%
+  inner_join(divvy_stations, by = c("start_lat" = "latitude", "start_lng" = "longitude")) %>%
+  select(start_lat, start_lng, name, id)
+
+# Preview the matched stations data frame
+head(matched_stations)
+
+
+#See what stations dont have a match 
+# Perform a left join between divvy_trips and divvy_stations based on latitude and longitude
+matched_stations <- divvy_trips %>%
+  left_join(divvy_stations, by = c("start_lat" = "latitude", "start_lng" = "longitude")) %>%
+  select(start_lat, start_lng, name = name, id)
+
+# Filter rows where there is no match
+unmatched_stations <- matched_stations %>%
+  filter(is.na(name) | is.na(id))
+
+# Preview the unmatched stations data frame
+head(unmatched_stations)
+
+
+#Join the divvy_station and divvy_trips data frames by the starting latitutde and longitude of the trip 
+
+divvy_trips_v2 <- divvy_trips %>%
+  left_join(divvy_stations, by = c("start_lat" = "latitude", "start_lng" = "longitude"))
+# Preview the unmatched stations with match data frame
+head(unmatched_with_match)
+
+```
+    
+Find in the end_station_name by their longitude and latitude with the end_lat and the end_lat using the divvy_stations dataset(Use the divvy_trips dataset)
+```{r Find end_station_id by lat and log }
+
+```
+    
+Correlate station ids the correct stations(Use the divvy_trips dataset)
+```{r Correcting station ids}
+# Add stations that maybe in divvy_trips and not in the divvy_stations
+
+# Add the correct ids to start_station_id
+
+# Add the correct ids to end_station_id
+
+```
+    
+Transforming variables
+```{r Changing and converting vectors and varibles}
+# Convert the start_station_id from characters to integer
+
+# Convert the end_station_id from characters to integer
+
+# Convert started_at from character to time stamp
+
+# Convert ended_at from character to time stamp 
+
+
+```
+
+
+
+Run calculations in one file to get a better sense of the data layout.
+
+
+
+Calculate the mean of ride_length 
+    ```{r Average of ride length}
+    # Calculate the mean of ride_length
+        
+    mean_ride_length <- mean(divvy_trips_v2$ride_length)
+
+    # Print the mean
+      
+    print(mean_ride_length)
+    
+     cat("The average ride length is:", mean_ride_length, "minutes")
+    ```
+    
+Calculate the min ride_length
+    ```{r Minimum ride length}
+    # Calculate the minimum value of the ride_length column
+    
+    min_ride_length <- min(divvy_trips_v2$ride_length)
+
+    # Print the minimum ride_length
+    
+    print(min_ride_length)
+    
+    cat("The shortest ride is:", min_ride_length, "minutes")
+    ```
+    
+Calculate the max ride_length
+    ```{r Maximum ride length}
+    # Calculate the maximum value of the ride_length column
+    
+    max_ride_length <- max(divvy_trips_v2$ride_length)
+
+    # Print the maximum ride_length
+    
+    print(max_ride_length)
+    
+    cat("The longest ride is:", max_ride_length, "minutes")
+    ```
+   
+Calculate the mode of day_of_week
+    ```{r Most Frequent ride length}
+    
+
+    # Print the most frequent ride_length(s)
+    
+    cat("The most frequent ride_length(s) is/are:", most_frequent_ride_length, "minutes")
+    ```
+      
+     
+
+Conduct descriptive analysis.
+
+Find the basic statistics of the dataframe 
+
+Summaries of the data
+```{r The exhaustive summary of divvy_stations_}
+#Summary of the whole dataframe
+summary(divvy_stations_)
+
+```
+
+```{r The exhaustive summary of divvy_trips}
+#Summary of the whole dataframe
+summary(divvy_trips)
+summary(divvy_trips_v2)
+summary(divvy_stations)
+summary(divvy_stations_v2)
+```
+
+```{r The exhaustive summary of the dataframe}
+#Summary of the whole dataframe
+
+#Summary of ride_length
+
+ride_length_summary <- divvy_trips_v2 %>%
+  summarise(
+    total_rides = n(),
+    average_ride_length = mean(ride_length),
+    max_ride_length = max(ride_length),
+    min_ride_length = min(ride_length),
+    median_ride_length = median(ride_length)
+  )
+
+
+
+busiest_day <- divvy_trips_v2 %>%
+  count(started_at) %>%
+  filter(n == max(n))
+
+# Display the busiest day
+busiest_day
+
+
+
+```
+
+```{r The summary of the specific years}
+#Summary of the year 2021
+#Summary of the year 2022
+#Summary of the year 2023
+```
+
+```{r The summary of the specific months within the years}
+#Summary of all the months in year 2021
+#Summary of all the months in year 2022
+#Summary of all the months in year 2023
+```
+
+```{r The summary of the specific seasons within the specific years}
+#Summary of the seasons in the year 2021
+#summary of the seasons in the year 2022
+#Summary of the seasons in the year 2023
+```
+  
+  Analysis questions
+  
+What were the annual members doing 
+```{r Count of annual members}
+#Calculate the amount of annual members
+
+annual_member <- length(which(divvy_trips_v2$member_casual=="member"))
+
+print(annual_member)
+
+```
+```{r}
+
+#table(divvy_trips_v2$member_casual)
+
+
+#nrow(divvy_trips_v2[divvy_trips_v2$start_date > 2020-12-31 & divvy_trips_v2$start_date < 2022-01-01 & divvy_trips_v2$member_casual == "member"])
+
+
+```
+
+
+```{r Annual members rides each of the years 2021 to 2023}
+#Calculate the amount of annual members in the 2021
+
+#Calculate the amount of annual members in the 2022
+
+#Calculate the amount of annual members in the 2023
+
+
+#Data viz 
+```
+
+```{r Annual members rides each season from 2021 to 2023}
+#Calculate the amount of annual members in the specific seasons
+
+#Data viz 
+```
+
+```{r Annual members rides each month of the years 2021 to 2023}
+#Calculate the amount of annual members in the specific months in sepcific years 
+
+#Data viz 
+```
+
+What were the Casual members doing 
+```{r Count of Casual members}
+#Calculate the amount of Casual members 
+casual_member <- length(which(divvy_trips_v2$member_casual=="casual"))
+
+print(casual_member)
+```
+
+```{r Casual members rides each of the years 2021 to 2023}
+#Calculate the amount of Casual members in the specific years
+
+#Data viz 
+```
+
+```{r Casual members rides each season from 2021 to 2023}
+
+
+#Data viz 
+```
+
+```{r Casual members rides each month of the years 2021 to 2023}
+#Calculate the amount of Casual members in the specific months in sepcific years 
+
+#Data viz 
+```
+
+Who frequented a ride most: member or casual? 
+```{r Who showed up the most}
+#Calcuate who between the Casual members and the annual memebers rode the most between 2021 to 2023 
+
+ #Data Visualization
+
+```     
+
+What was the most frequented station
+```{r The most popular station}
+
+#Data Visualization
+```
+      
+What was the least frequented station
+```{r The Least popular station}
+
+#Data Visualization
+```
+
+
+
+Export a summary file for further analysis.

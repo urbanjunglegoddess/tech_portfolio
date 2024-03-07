@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS employeedemographics(
-    employeeid int PRIMARY KEY ,
+    employeeid int,
     firstname varchar(50),
     lastname  varchar(50),
     age int,
@@ -9,14 +9,12 @@ CREATE TABLE IF NOT EXISTS employeedemographics(
 CREATE TABLE IF NOT EXISTS employeesalary(
     employeeid int,
     jobtitle varchar(50),
-    salary int,
-     CONSTRAINT fk_employeeid
-      FOREIGN KEY(employeeid)
-      REFERENCES employeedemographics(employeeid)
-);
+    salary int
+	)
+
 
 Create Table IF NOT EXISTS warehouseemployees
-(EmployeeID int,
+(employeeid int,
 FirstName varchar(50),
 LastName varchar(50),
 Age int,
@@ -24,14 +22,17 @@ Gender varchar(50)
 );
 -- INSERT INTO employeedemographics
 -- VALUES (1001,'Jim', 'Halpart', 30, 'Male'),
---  (1002,'Pam','Beasley',30,'Female'),
---  (1003,'Dwight', 'Schrute', 29, 'Male'),
---  (1004,'Angela','Martin',31,'Female'),
---  (1005, 'Toby','Flenderson', 32, 'Male'),
---  (1006, 'Micheal','Scott',35,'Male'),
---  (1007, 'Meredith','Palmer', 32, 'Female'),
---  (1008, 'Stanley', 'Hudson', 38, 'Male'),
---  (1009, 'Kevin', 'Malone', 31, 'Male');
+-- (1002,'Pam','Beasley',30,'Female'),
+-- (1003,'Dwight', 'Schrute', 29, 'Male'),
+-- (1004,'Angela','Martin',31,'Female'),
+-- (1005, 'Toby','Flenderson', 32, 'Male'),
+-- (1006, 'Micheal','Scott',35,'Male'),
+-- (1007, 'Meredith','Palmer', 32, 'Female'),
+-- (1008, 'Stanley', 'Hudson', 38, 'Male'),
+-- (1009, 'Kevin', 'Malone', 31, 'Male')
+-- (1011, 'Ryan', 'Howard', 26, 'Male'),
+-- (NULL, 'Holly', 'Flax', NULL, NULL),
+-- (1013, 'Darryl', 'Philbin', NULL, 'Male');
 
 --  INSERT INTO employeesalary
 --  VALUES
@@ -50,12 +51,6 @@ Gender varchar(50)
 -- (1050, 'Roy', 'Anderson', 31, 'Male'),
 -- (1051, 'Hidetoshi', 'Hasagawa', 40, 'Male'),
 -- (1052, 'Val', 'Johnson', 31, 'Female')
---
--- Insert into employeedemographics
--- VALUES
--- (1011, 'Ryan', 'Howard', 26, 'Male'),
--- (1012, 'Holly', 'Flax', NULL, NULL),
--- (1013, 'Darryl', 'Philbin', NULL, 'Male')
 
 SELECT *
 FROM employeedemographics e;
