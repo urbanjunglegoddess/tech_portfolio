@@ -123,17 +123,22 @@ Add columns into the data frame named: start_date, start_time, stop_date,
 stop_time,ride_length,season(time of the year), day_of_the_week
 ride_time_of_day.
 ```{r Convert the date and time columns to proper datetime format}
+
 #Convert the date and time columns to proper datetime format
 divvy_trips$started_at <- ymd_hms(divvy_trips$started_at)
 divvy_trips$ended_at <- ymd_hms(divvy_trips$ended_at)
+
 # Extract month and year from started_at column
 divvy_trips$month <- month(divvy_trips$started_at)
 divvy_trips$year <- year(divvy_trips$started_at)
+
 # Remove the online_date column from divvy_stations
 divvy_stations <- divvy_stations %>%
   select(-online_date)
+
 #Change member_casual to membership
 divvy_trips <- divvy_trips %>% rename(membership = member_casual)
+
 #Calculate the ride_length (duration of the ride) by subtracting the started_at from ended_at
 divvy_trips$ride_length <- as.numeric(difftime(divvy_trips$ended_at, divvy_trips$started_at, units = "mins"))
 
@@ -145,8 +150,10 @@ divvy_trips$season <- case_when(
     month(divvy_trips$started_at) %in% c(9, 10, 11) ~ "Fall",
     TRUE ~ "Unknown"
     )
+
 # Extract day_of_the_week from start_date
    divvy_trips$day_of_the_week <- weekdays(divvy_trips$started_at)
+
 # Establish morning, afternoon, and night of the day
   divvy_trips$ride_time_of_day <- case_when(
     hour(divvy_trips$started_at) %in% c(00, 01, 02, 03,04,05,06,07,08,09,10,11) ~ "Morning",
@@ -154,6 +161,7 @@ divvy_trips$season <- case_when(
     hour(divvy_trips$started_at) %in% c(17,18,19,20,21,22,23) ~ "Night",
     TRUE ~ "Unknown"
     )
+
  #Create start_location and end_location as spatial points
 # divvy_trips$start_location <- st_point(cbind(divvy_trips$start_lng, divvy_trips$start_lat))
 # divvy_trips$end_location <- st_point(cbind(divvy_trips$end_lng, divvy_trips$end_lat))
@@ -166,35 +174,47 @@ divvy_trips$season <- case_when(
 #Create a back up data frames
 divvy_trips_v2 <-divvy_trips
 divvy_stations_v2 <- divvy_stations
+
 #Remove Duplicates
 divvy_trips_v2 <- unique(divvy_trips_v2)
+
 #Calculate the total number of trips in the divvy_trips
 total_trips <- nrow(divvy_trips)
+
 # Count of each rideable type in the divvy_trips
 rideable_counts <- table(divvy_trips$rideable_type)
+
 # Extract records with missing data from divvy_trips_v2
 records_missing_info <- divvy_trips_v2 %>%
   filter_all(any_vars(is.na(.)))
+
 # Extract unique start station information
 start_stations <- divvy_trips %>%
   distinct(start_station_name, start_station_id, start_lat, start_lng) %>%
   rename(station_name = start_station_name, station_id = start_station_id, latitude = start_lat, longitude = start_lng)
+
 # Extract unique end station information
 end_stations <- divvy_trips %>%
   distinct(end_station_name, end_station_id, end_lat, end_lng) %>%
   rename(station_name = end_station_name, station_id = end_station_id, latitude = end_lat, longitude = end_lng)
+
 # Combine start and end station information
 all_stations <- bind_rows(start_stations, end_stations)
+
 # Print the resulting data frame
 print(all_stations)
+
 # Compare all_stations to divvy_stations by station_id
 comparison <- all_stations %>%
   anti_join(divvy_stations, by = "id")
+
 # Print the unmatched station information
 print(comparison)
+
 # Compare all_stations to divvy_stations by station_id
 matching_stations <- all_stations %>%
   semi_join(divvy_stations, by = "id")
+
 # Print the matching station information
 print(matching_stations)
 ```
@@ -202,11 +222,14 @@ Find the outliers
 ```{r Find the oultiers in the columns}
 # Count the number of null values in a column
 membership_null_count <- sum(is.na(divvy_trips$membership))
+
 # Find ride lengths less than 0 in divvy_trips_v2
 negative_ride_lengths <- divvy_trips_v2 %>%
   filter(ride_length < 0)
+
 #Fix the rides that are not a positive number
 divvy_trips_v2 <- divvy_trips_v2[divvy_trips_v2$ride_length >= 0,]
+
 # Check and correct the spelling of membership values
 divvy_trips_v2 <- divvy_trips_v2 %>%
   mutate(membership = case_when(
@@ -215,14 +238,19 @@ divvy_trips_v2 <- divvy_trips_v2 %>%
     membership == "casua" ~ "casual",
     TRUE ~ NA_character_
   ))
+
 # Find inconsistent data in divvy_trips
 inconsistent_trips <- divvy_trips[!(divvy_trips$rideable_type %in% c("classic_bike", "docked_bike", "electric_bike")), ]
+
 # Create a new data frame for inconsistent data
 inconsistent_data <- data.frame(inconsistent_trips, inconsistent_stations)
+
 #Remove rows that have information missing
 records_missing_info <-divvy_trips_v2 <- drop_na(divvy_trips_v2)
+
 # Find similar words in start_station_name and end_station_name columns of divvy_trips
 similar_words_trips <- stringdist::amatch(unique(c(divvy_trips$start_station_name, divvy_trips$end_station_name)), unique(c(divvy_stations$name)), maxDist = 2)
+
 # Find similar words in name column of divvy_stations
 similar_words_stations <- stringdist::amatch(unique(divvy_stations$name), unique(c(divvy_trips$start_station_name, divvy_trips$end_station_name)), maxDist = 2)
 ```
@@ -298,6 +326,7 @@ summary(divvy_stations_v2)
 summary(cleaned_divvy_trips)
 summary(cleaned_divvy_stations)
 #Summary of ride_length
+
 ride_length_summary <- cleaned_divvy_trips %>%
   summarise(
     total_rides = n(),
@@ -306,18 +335,22 @@ ride_length_summary <- cleaned_divvy_trips %>%
     min_ride_length = min(ride_length),
     median_ride_length = median(ride_length)
   )
+
 #Calculate the amount of annual members all together
 total_annual_members <- cleaned_divvy_trips %>%
   filter(membership == "Annual") %>%
   summarise(total_members = n())
+
 #Calculate the amount of annual members in the 2020
 annual_members_2020 <- cleaned_divvy_trips %>%
   filter(membership == "Annual" & year(started_at) == 2020) %>%
   summarise(total_members = n())
+
 #Calculate the amount of annual members in the 2021
 annual_members_2021 <- cleaned_divvy_trips %>%
   filter(membership == "Annual" & year(started_at) == 2021) %>%
   summarise(total_members = n())
+
 #Calculate the amount of annual members in the 2022
 annual_members_2022 <- cleaned_divvy_trips %>%
   filter(membership == "Annual" & year(started_at) == 2022) %>%
@@ -326,26 +359,31 @@ annual_members_2022 <- cleaned_divvy_trips %>%
 annual_members_2023 <- cleaned_divvy_trips %>%
   filter(membership == "Annual" & year(started_at) == 2023) %>%
   summarise(total_members = n())
+
 #Calculate the amount of annual members in the specific seasons
 annual_members_by_season <- cleaned_divvy_trips %>%
   filter(membership == "Annual") %>%
   group_by(season) %>%
   summarise(total_members = n())
+
 #Calculate the amount of annual members in the specific months in specific years
 annual_members_by_month <- cleaned_divvy_trips %>%
   filter(membership == "Annual" & year(started_at) %in% c(2020,2021, 2022, 2023)) %>%
   group_by(year(started_at), month(started_at)) %>%
   summarise(total_members = n())
+
 #Calculate the amount of Casual members in the specific years
 casual_members_by_year <- cleaned_divvy_trips %>%
   filter(membership == "Casual" & year(started_at) %in% c(2020,2021, 2022, 2023)) %>%
   group_by(year(started_at)) %>%
   summarise(total_members = n())
+
 #Calculate the amount of Casual members in the specific seasons
 casual_members_by_season <- cleaned_divvy_trips %>%
   filter(membership == "Casual") %>%
   group_by(season) %>%
   summarise(total_members = n())
+
 #Calculate the amount of Casual members in the specific months in specific years
 casual_members_by_month <- cleaned_divvy_trips %>%
   filter(membership == "Casual" & year(started_at) %in% c(2020, 2021, 2022, 2023)) %>%
@@ -358,106 +396,128 @@ casual_members_by_month <- cleaned_divvy_trips %>%
 ride_counts <- cleaned_divvy_trips %>%
   group_by(membership) %>%
   summarise(ride_count = n())
+
 # Average ride length by member type
 ride_avg_length <- cleaned_divvy_trips %>%
   group_by(membership) %>%
   summarise(avg_ride_length = mean(ride_length))
+
 #Calculate the percentage of rides taken by each user type (member or casual) within the years 2020-2023
 ride_percentages <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(year(started_at), membership) %>%
   summarise(ride_percentage = n() / nrow(cleaned_divvy_trips) * 100)
+
 # Calculate correlation matrix
 corr_matrix <- cor(cleaned_divvy_trips[, c("ride_length", "start_lat", "start_lng", "end_lat", "end_lng")])
+
 # Plot the number of rides over time
 rides_over_time <- cleaned_divvy_trips %>%
   group_by(year, month) %>%
   summarise(total_rides = n())
+
 # Bar chart of ride counts by member type and season
 ride_counts_season <- cleaned_divvy_trips %>%
   group_by(membership, season) %>%
   summarise(ride_count = n())
+
 # Top 10 most popular start stations
 top_start_stations <- cleaned_divvy_trips %>%
   group_by(start_station_name) %>%
   summarise(ride_count = n()) %>%
   top_n(10, ride_count) %>%
   arrange(desc(ride_count))
+
 # Top 10 most popular end stations
 top_end_stations <- cleaned_divvy_trips %>%
   group_by(end_station_name) %>%
   summarise(ride_count = n()) %>%
   top_n(10, ride_count) %>%
   arrange(desc(ride_count))
+
 # Proportion of member types
 member_type_counts <- cleaned_divvy_trips %>%
   count(membership)
+
 # Proportion of member types by season
 member_type_season_counts <- cleaned_divvy_trips %>%
   count(membership, season)
+
 # Count the number of rides by day of the week
 ride_counts_by_day <- cleaned_divvy_trips %>%
   mutate(day_of_week = weekdays(started_at)) %>%
   count(day_of_week)
+
 # Count the number of rides by season
 ride_counts_by_season <- cleaned_divvy_trips %>%
   count(season)
+
 # Calculate average ride duration by member type and season
 ride_duration_by_member_season <- cleaned_divvy_trips %>%
   group_by(membership, season) %>%
   summarise(avg_ride_duration = mean(ride_length))
+
 #Calculate the average ride length (duration) for each season within the years 2020-2023
 average_ride_length <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   mutate(ride_length = ended_at - started_at) %>%
   group_by(year(started_at), season) %>%
   summarise(average_length = mean(ride_length, na.rm = TRUE))
+
 #Calculate the average ride duration for each month within the years 2020-2023:
 average_ride_duration <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   mutate(ride_duration = ended_at - started_at) %>%
   group_by(year(started_at), month(started_at)) %>%
   summarise(average_duration = mean(ride_duration, na.rm = TRUE))
+
 #Calculate the total number of rides for each day of the week within the years 2020-2023
 total_rides_per_day <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(year(started_at), day_of_the_week) %>%
   summarise(total_rides = n())
+
 # Calculate ride distances using start and end coordinates
 cleaned_divvy_trips$ride_distance <- geosphere::distHaversine(
   p1 = cbind(cleaned_divvy_trips$start_lng, cleaned_divvy_trips$start_lat),
   p2 = cbind(cleaned_divvy_trips$end_lng, cleaned_divvy_trips$end_lat)
 )
+
 # Find the busiest day
 busiest_day <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(started_at_date) %>%
   summarise(total_rides = n()) %>%
   filter(total_rides == max(total_rides))
+
 # Which location gets busiest on what season in what year
 busiest_location_by_season <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(year(started_at), season, start_station_name) %>%
   summarise(total_rides = n()) %>%
   filter(total_rides == max(total_rides))
+
 # Which is least busiest in every year
 least_busy_locations <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(year(started_at), start_station_name) %>%
   summarise(total_rides = n()) %>%
   filter(total_rides == min(total_rides))
+
 # What season is the busiest
 busiest_season <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(season) %>%
   summarise(total_rides = n()) %>%
   filter(total_rides == max(total_rides))
+
 # What year was the busiest
 busiest_year <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(year(started_at)) %>%
   summarise(total_rides = n()) %>%
   filter(total_rides == max(total_rides))
+
 # What was the busiest month in what year
 busiest_month_by_year <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
@@ -465,67 +525,81 @@ busiest_month_by_year <- cleaned_divvy_trips %>%
   summarise(total_rides = n()) %>%
   group_by(year(started_at)) %>%
   filter(total_rides == max(total_rides))
+
 # Summary of the busiest day
 busiest_day_summary <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(started_at_date) %>%
   summarise(total_rides = n())
+
 # Summary of the type of bike used by year
 bike_type_summary <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(year(started_at), rideable_type) %>%
   summarise(total_rides = n())
+
 # Summary of the year 2020
 summary_2020 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2020-12-31")) %>%
   summarise(total_rides = n())
+
 # Summary of the year 2021
 summary_2021 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2021-01-01") & started_at <= as.Date("2021-12-31")) %>%
   summarise(total_rides = n())
+
 # Summary of the year 2022
 summary_2022 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2022-01-01") & started_at <= as.Date("2022-12-31")) %>%
   summarise(total_rides = n())
+
 # Summary of the year 2023
 summary_2023 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2023-01-01") & started_at <= as.Date("2023-12-31")) %>%
   summarise(total_rides = n())
+
 # Summary of all the months in year 2021
 summary_months_2021 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2021-01-01") & started_at <= as.Date("2021-12-31")) %>%
   group_by(month(started_at)) %>%
   summarise(total_rides = n())
+
 # Summary of all the months in year 2022
 summary_months_2022 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2022-01-01") & started_at <= as.Date("2022-12-31")) %>%
   group_by(month(started_at)) %>%
   summarise(total_rides = n())
+
 # Summary of all the months in year 2023
 summary_months_2023 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2023-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(month(started_at)) %>%
   summarise(total_rides = n())
+
 # Summary of the seasons in the year 2020
 summary_seasons_2020 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2020-12-31")) %>%
   group_by(season) %>%
   summarise(total_rides = n())
+
 # Summary of the seasons in the year 2021
 summary_seasons_2021 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2021-01-01") & started_at <= as.Date("2021-12-31")) %>%
   group_by(season) %>%
   summarise(total_rides = n())
+
 # Summary of the seasons in the year 2022
 summary_seasons_2022 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2022-01-01") & started_at <= as.Date("2022-12-31")) %>%
   group_by(season) %>%
   summarise(total_rides = n())
+
 # Summary of the seasons in the year 2023
 summary_seasons_2023 <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2023-01-01") & started_at <= as.Date("2023-12-31")) %>%
   group_by(season) %>%
   summarise(total_rides = n())
+
 #Calculate who between the Casual members and the annual members rode the most between 2020 to 2023
 casual_vs_annual <- cleaned_divvy_trips %>%
   filter(started_at >= as.Date("2020-01-01") & started_at <= as.Date("2023-12-31")) %>%
@@ -543,12 +617,15 @@ ggplot(ride_counts, aes(x = membership, y = ride_count)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(x = "Member Type", y = "Ride Count", title = "Ride Counts by Member Type")
 # Plot correlation matrix
+
 corrplot(corr_matrix, method = "color", type = "upper", tl.col = "black")
+
 # Plot the number of rides over time
 ggplot(rides_over_time, aes(x = month, y = total_rides, group = year, color = factor(year))) +
   geom_line() +
   labs(x = "Month", y = "Number of Rides", title = "Number of Rides Over Time") +
   scale_color_discrete(name = "Year")
+
 # Create a leaflet map of station locations
 leaflet(cleaned_divvy_stations) %>%
   addTiles() %>%
@@ -558,20 +635,24 @@ ggplot(ride_counts_season, aes(x = membership, y = ride_count, fill = season)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(x = "Member Type", y = "Ride Count", title = "Ride Counts by Member Type and Season") +
   scale_fill_manual(values = c("spring" = "blue", "summer" = "green", "fall" = "orange", "winter" = "purple"))
+
 # Boxplot of ride duration by member type
 ggplot(cleaned_divvy_trips, aes(x = membership, y = ride_length)) +
   geom_boxplot(fill = "steelblue") +
   labs(x = "Member Type", y = "Ride Duration (minutes)", title = "Ride Duration by Member Type")
+
 # Top 10 most popular start stations
 ggplot(top_start_stations, aes(x = reorder(start_station_name, -ride_count), y = ride_count)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(x = "Start Station", y = "Ride Count", title = "Top 10 Most Popular Start Stations") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
 # Top 10 most popular end stations
 ggplot(top_end_stations, aes(x = reorder(end_station_name, -ride_count), y = ride_count)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(x = "End Station", y = "Ride Count", title = "Top 10 Most Popular End Stations") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
 # Proportion of member types
 ggplot(member_type_counts, aes(x = "", y = n, fill = membership)) +
   geom_bar(stat = "identity", width = 1) +
@@ -579,34 +660,41 @@ ggplot(member_type_counts, aes(x = "", y = n, fill = membership)) +
   labs(x = NULL, y = NULL, fill = "Member Type", title = "Proportion of Member Types") +
   theme_void() +
   theme(legend.position = "bottom")
+
 # Proportion of member types by season
 ggplot(member_type_season_counts, aes(x = season, y = n, fill = membership)) +
   geom_bar(stat = "identity", position = "fill") +
   labs(x = "Season", y = "Proportion", fill = "Member Type", title = "Proportion of Member Types by Season")
+
 # Plot the ride frequency by day of the week
 ggplot(ride_counts_by_day, aes(x = day_of_week, y = n, fill = day_of_week)) +
   geom_bar(stat = "identity") +
   labs(x = "Day of the Week", y = "Ride Count", title = "Ride Frequency by Day of the Week") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_discrete(name = "Day of the Week")
+
 # Plot the distribution of ride lengths
 ggplot(cleaned_divvy_trips, aes(x = ride_length)) +
   geom_histogram(binwidth = 5, fill = "steelblue") +
   labs(x = "Ride Length (minutes)", y = "Count", title = "Distribution of Ride Lengths")
+
 # Plot the ride counts by season
 ggplot(ride_counts_by_season, aes(x = season, y = n, fill = season)) +
   geom_bar(stat = "identity") +
   labs(x = "Season", y = "Ride Count", title = "Ride Counts by Season") +
   scale_fill_discrete(name = "Season")
+
 # Plot the average ride duration by member type and season
 ggplot(ride_duration_by_member_season, aes(x = membership, y = avg_ride_duration, fill = season)) +
   geom_col(position = "dodge") +
   labs(x = "Member Type", y = "Average Ride Duration", title = "Average Ride Duration by Member Type and Season") +
   scale_fill_discrete(name = "Season")
+
 # Plot the distribution of ride distances
 ggplot(cleaned_divvy_trips, aes(x = ride_distance)) +
   geom_histogram(binwidth = 1000, fill = "steelblue") +
   labs(x = "Ride Distance (meters)", y = "Count", title = "Distribution of Ride Distances")
+
 # Bar plot the distribution of rideable types
 ggplot(cleaned_divvy_trips, aes(x = rideable_type)) +
   geom_bar(fill = "blue") +
