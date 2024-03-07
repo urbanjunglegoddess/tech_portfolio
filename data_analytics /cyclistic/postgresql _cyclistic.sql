@@ -30,7 +30,7 @@ CREATE TABLE divvy_trips (
 CREATE TABLE all_stations (
     id varchar (20),
     name varchar(200),
-    latitude DECIMAL(9,6),
+    latitude numeric9,6),
     longitude DECIMAL(9,6),
     geo_point POINT
 );
