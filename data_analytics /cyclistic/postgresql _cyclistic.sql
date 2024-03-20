@@ -23,15 +23,16 @@ CREATE TABLE divvy_trips (
     end_day            VARCHAR,
     start_day          VARCHAR,
     start_ride_tod     VARCHAR,
-    end_ride_tod       VARCHAR
+    end_ride_tod       VARCHAR,
+    week          INTEGER
 );
 
 --Create a table with all the stations with their ids, latitudes, longitudes, and geo_points
 CREATE TABLE all_stations (
     id varchar (20),
     name varchar(200),
-    latitude numeric9,6),
-    longitude DECIMAL(9,6),
+    latitude numeric,
+    longitude numeric,
     geo_point POINT
 );
 
@@ -78,7 +79,13 @@ SET start_ride_tod =
             ELSE 'Midnight'
             END;
 
----- Insert stations data into all_stations table
+--Find the week of the year for each ride and update the week column
+UPDATE cyclistic.divvy_trips
+SET week = EXTRACT(WEEK FROM started_at);
+
+
+
+-- Insert stations data into all_stations table
 INSERT INTO all_stations
 SELECT DISTINCT start_station_id, start_station_name, start_lat, start_lng
 FROM divvy_trips;
@@ -145,8 +152,6 @@ WHERE geo_point IS NULL;
 SELECT count(*)
 FROM duplicate_stations
 WHERE geo_point IS NOT NULL;
-
--- Show the records of the names and the distinct geo points where the geo points are not null
 
 
 -- Delete the duplicate stations from the all_stations table
@@ -347,19 +352,19 @@ WHERE end_location IS NULL;
 SELECT COUNT(*)
 FROM divvy_trips dt
 WHERE end_day IS NULL;
---There are  null values in
+--There are 0 null values in
 
 SELECT COUNT(*)
 FROM divvy_trips dt
 WHERE start_day IS NULL;
---There are  null values in
+--There are 0 null values in
 
 SELECT COUNT(*)
 FROM divvy_trips dt
 WHERE START_RIDE_TOD IS NULL;
---There are  null values in
+--There are 0 null values in
 
 SELECT COUNT(*)
 FROM divvy_trips dt
 WHERE END_RIDE_TOD IS NULL;
---There are  null values in
+--There are 0 null values in
