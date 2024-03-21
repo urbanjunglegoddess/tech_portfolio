@@ -165,24 +165,24 @@ console.log(todoCompletedText);
 
 // Conditionals
 // if, else, else if, ternary operator, switch
-const x = 10;
-if(x === 10) {
+const a = 10;
+if(a === 10) {
     console.log('x is 10');
 }
 
-const y = 20;
-if(y === 10) {
+const b = 20;
+if(b === 10) {
     console.log('y is 10');
 }
 else {
     console.log('y is NOT 10');
 }
 
-const z = 30;
-if(z === 10) {
+const c = 30;
+if(c === 10) {
     console.log('z is 10');
 }
-else if(z > 10) {
+else if(c > 10) {
     console.log('z is greater than 10');
 }
 else {
@@ -190,8 +190,8 @@ else {
 }
 
 // Ternary Operator
-const a = 10;
-const color = a > 10 ? 'red' : 'blue';
+const d = 10;
+const color = d > 10 ? 'red' : 'blue';
 console.log(color);
 
 // Switch
@@ -217,7 +217,7 @@ console.log(addNums(5, 4));
 const addNums = (num1, num2) => num1 + num2;
 console.log(addNums(5, 4));
 
-// Object Oriented Programming
+// Object-Oriented Programming
 // Constructor Function
 function Person(firstName, lastName, dob) {
     this.firstName = firstName;
@@ -298,4 +298,136 @@ console.log(document.querySelector('h1'));
 console.log(document.querySelectorAll('.item'));
 console.log(document.getElementsByClassName('item'));
 console.log(document.getElementsByTagName('li'));
+
+const items = document.querySelectorAll('.item');
+items.forEach((item) => console.log(item));
+
+// Manipulating the DOM
+const ul = document.querySelector('.items');
+// ul.remove();
+// ul.lastElementChild.remove();
+ul.firstElementChild.textContent = 'Hello';
+ul.children[1].innerText = 'Brad';
+ul.lastElementChild.innerHTML = '<h1>Hello</h1>';
+
+const btn = document.querySelector('.btn');
+btn.style.background = 'red';
+
+// Events
+// Mouse Event
+btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(e.target.className);
+    document.getElementById('my-form').style.background = '#f4f4f4';
+    document.querySelector('body').classList.add('bg-dark');
+    ul.lastElementChild.innerHTML = '<h1>Changed</h1>';
+});
+
+// Keyboard Event
+const nameInput = document.querySelector('#name');
+nameInput.addEventListener('input', (e) => {
+    console.log(e.target.value);
+});
+
+// Form Event
+const myForm = document.querySelector('#my-form');
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const msg = document.querySelector('.msg');
+const userList = document.querySelector('#users');
+
+myForm.addEventListener('submit', onSubmit);
+
+function onSubmit(e) {
+}
+
+// Local Storage
+// set local storage item
+localStorage.setItem('name', 'John');
+localStorage.setItem('age', '30');
+
+// set session storage item
+sessionStorage.setItem('name', 'Beth');
+
+// remove local storage item
+localStorage.removeItem('name');
+
+// get from storage
+const name = localStorage.getItem('name');
+const age = localStorage.getItem('age');
+
+// clear local storage
+localStorage.clear();
+console.log(name, age);
+
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const task = document.getElementById('task').value;
+    let tasks;
+    if(localStorage.getItem('tasks') === null) {
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    alert('Task saved');
+});
+
+const tasks = JSON.parse(localStorage.getItem('tasks'));
+tasks.forEach(function(task) {
+    console
+    console
+    console
+    console
+    console
+    console
+    console
+    console
+    console
+
+    console.log(task);
+}
+
+// JSON
+
+const todos = [
+    {
+        id: 1,
+        text: 'Take out trash',
+        isCompleted: true
+    },
+    {
+        id: 2,
+        text: 'Meeting with boss',
+        isCompleted: true
+    },
+    {
+        id: 3,
+        text: 'Dentist appt',
+        isCompleted: false
+    }
+];
+
+console.log(JSON.stringify(todos));
+
+// Asynchronous JavaScript
+// Synchronous
+// Asynchronous
+// AJAX
+// XHR Object
+// Fetch API
+// Promises
+// Async / Await
+// Error Handling
+// Regular Expressions
+// Modules
+// Browser Object Model
+// Window Object
+// Document Object
+// Form Validation
+// Local & Session Storage
+// Cookies
+
+
 
