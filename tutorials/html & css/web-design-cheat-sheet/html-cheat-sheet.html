@@ -3,40 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>HTML Cheat Sheet</title>
+    <link rel="stylesheet" href="css-cheat-sheet.css">
 </head>
-<body>
 
+<body>
+<header>
+    <h1>HTML Cheat Sheet</h1>
+    <nav>
+        <ul>
+            <li><a href="#headings">Headings</a></li>
+            <li><a href="#paragraph">Paragraph</a></li>
+            <li><a href="#lists">Lists</a></li>
+            <li><a href="#table">Table</a></li>
+            <li><a href="#forms">Forms</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#images">Images</a></li>
+            <li><a href="#links">Links</a></li>
+            <li><a href="#quotations">Quotations</a></li>
+            <li><a href="#boxes">Boxes</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
 <h1> Heading One</h1>
 <h2> Heading Two</h2>
 <h3> Heading Three</h3>
 <h4> Heading Four</h4>
 <h5> Heading Five</h5>
 <h6> Heading Six</h6>
+</div>
 
 <!--Paragraph-->
-<p>
+<div class="box"><p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum deleniti <strong>laboriosam, magni non numquam qui reprehenderit</strong> sequi vitae? Aperiam atque eum fugit ratione voluptatibus! Delectus doloribus <a href="http://google.com" target="_blank"> impedit possimus tempora vel!</a>
 </p>
 <p> Lorem ipsum dolor sit amet, <em>consectetur adipisicing</em> elit. Enim, nulla.
 </p>
+</div>
+
 
 <!-- Lists -->
-<ul>
+<div class="box"><ul>
     <li>List Item 1</li>
     <li>List Item 2 </li>
     <li>List Item 3</li>
     <li>List Item 4 </li>
 </ul>
-
+</div>
+<div class="box">
 <ol>
     <li>List Item 1</li>
     <li>List Item 2 </li>
     <li>List Item 3</li>
     <li>List Item 4 </li>
 </ol>
+</div>
 
 <!-- Table-->
-
+<div class="container">
 <table>
     <thead>
     <tr>
@@ -63,32 +88,37 @@
         <td>5</td>
     </tr>
 </table>
+</div>
+
+
 <!-- Forms-->
+<div class="container">
+
 <br>
 <form action="process.php" method="POST">
-    <div>
+    <div class="form-group">
         <label for="firstname">First Name</label>
     <input id="firstname" type="text" name="firstname">
     </div>
 
     <br>
 
-    <div>
+    <div class="form-group">
     <label for="lastname"> Last Name</label>
     <input id="lastname" type="text" name="lastname">
     </div>
 <br>
-    <div>
+    <div class="form-group">
         <label for="email"> Email </label>
         <input id="email" type="email" name="email" >
     </div>
     <br>
-    <div>
+    <div class="from-group">
         <label for="message">Message</label>
         <textarea id="message" name="message"> </textarea>
     </div>
     <br>
-    <div>
+    <div class="form-group">
         <label for="gender">Gender</label>
         <select id="gender" name="gender">
             <option value="male">Male</option>
@@ -97,12 +127,12 @@
         </select>
     </div>
     <br>
-    <div>
+    <div class="form-group">
         <label for="age">Age</label>
             <input id="age" type="number" name="age" value="30">
     </div>
     <br>
-    <div>
+    <div class="form-group">
         <label for="birthday">Birthday</label>
         <input id="birthday" type="date" name="birthday">
     </div>
@@ -111,20 +141,78 @@
         <input type="submit" value="Submit">
     </div>
 </form>
+</div>
+
 <!-- Buttons-->
-<button> Click Me </button>
+<div class="box"> <button> Click Me </button> </div>
 
 <!-- Images-->
+<div class="container">
+    <div class="image">
 <img src="https://via.placeholder.com/150" alt="placeholder image" width="150" height="150
 ">
+    </div>
+</div>
+
 <!-- Links-->
+<div class="link">
 <a href="http://google.com" target="_blank">Google</a>
+</div>
 
 <!--Quotations-->
-<blockquote>
+<div class="box"><blockquote>
     <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi assumenda dolor earum necessitatibus provident voluptatum! Aspernatur blanditiis, eaque eveniet, illo iure, numquam quaerat rem repellat temporibus vero voluptatum.</p>
 </blockquote>
+</div>
 
+
+<!--Boxes-->
+<div class="container"><div class="box">
+    <h2 class="box-header">Box Title</h2>
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi assumenda dolor earum necessitatibus provident voluptatum! Aspernatur blanditiis, eaque eveniet, illo iure, numquam quaerat rem repellat temporibus vero voluptatum.</p>
+</div>
+<div class="box">
+    <h2 class="box-header">Box Title</h2>
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi assumenda dolor earum necessitatibus provident voluptatum! Aspernatur blanditiis, eaque eveniet, illo iure, numquam quaerat rem repellat temporibus vero voluptatum.</p>
+</div>
+<div class="box">
+    <h2 class="box-header">Box Title</h2>
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi assumenda dolor earum necessitatibus provident voluptatum! Aspernatur blanditiis, eaque eveniet, illo iure, numquam quaerat rem repellat temporibus vero voluptatum.</p>
+</div>
+</div>
+
+<div class="block">
+    <h3>Heading</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi assumenda dolor earum necessitatibus provident voluptatum! Aspernatur blanditiis, eaque eveniet, illo iure, numquam quaerat rem repellat temporibus vero voluptatum.</p>
+</div>
+<div class="block">
+    <h3>Heading</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi assumenda dolor earum necessitatibus provident voluptatum! Aspernatur blanditiis, eaque eveniet, illo iure, numquam quaerat rem repellat temporibus vero voluptatum.</p>
+</div>
+<div class="block">
+    <h3>Heading</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi assumenda dolor earum necessitatibus provident voluptatum! Aspernatur blanditiis, eaque eveniet, illo iure, numquam quaerat rem repellat temporibus vero voluptatum.</p>
+</div>
+
+<div class="clr"></div>
+
+<div class="main-block">
+    <h3>Heading</h3>
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias animi assumenda dolor earum necessitatibus provident voluptatum! Aspernatur blanditiis, eaque eveniet, illo iure, numquam quaerat rem repellat temporibus vero voluptatum.</p>`
+</div>
+<div class="sidebar">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi facilis laborum quas quo veritatis! Alias architecto aspernatur consectetur, dolorem eaque eligendi est nam nihil nostrum quae quam repellendus ut voluptatibus!</p>
+</div>
+<div class="clr"></div>
+
+<div class="container">
+
+    <div class="p-box">
+        <h1>Heading</h1>
+        <h2>Sub Heading</h2>
+    </div>
+</div>
+<!--Footer-->
 
 <div style="margin-top:500px"></div>
 
