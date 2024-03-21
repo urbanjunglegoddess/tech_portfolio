@@ -317,203 +317,204 @@ console.log(person5.getBirthYear());
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// DOM
-// Single Element Selectors
-// document.getElementById()
-const form = document.getElementById('my-form');
-console.log(form);
-console.log(document.getElementById('my-form'));
-console.log(document.querySelector('h1'));
-
-myForm.addEventListener('submit', onSubmit() {
-    function onSubmit(e) {
-        e.preventDefault();
-
-        if(nameInput.value === '' || emailInput.value === '') {
-            msg.classList.add('error');
-            msg.innerHTML = 'Please enter all fields';
-            setTimeout(() => msg.remove(), 3000);
-        }   else {
-            const li = document.createElement('li');
-            li.appendChild(document.createTextNode(`${nameInput.value}: ${emailInput.value}`));
-            userList.appendChild(li);
-            nameInput.value = '';
-            emailInput.value = '';
-    }
-}
-// Multiple Element Selectors
-// document.querySelectorAll()
-console.log(document.querySelectorAll('.item'));
-console.log(document.getElementsByClassName('item'));
-console.log(document.getElementsByTagName('li'));
-
-const items = document.querySelectorAll('.item');
-items.forEach((item) => console.log(item));
-
-// Manipulating the DOM
-const ul = document.querySelector('.items');
-// ul.remove();
-// ul.lastElementChild.remove();
-ul.firstElementChild.textContent = 'Hello';
-ul.children[1].innerconsole.log(document.getElementById('my-form'));Text = 'Brad';
-ul.lastElementChild.innerHTML = '<h1>Hello</h1>';
-
-const btn = document.querySelector('.btn');
-btn.style.background = 'red';
-
-// Events
-// Mouse Event
-btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log(e.target.className);
-    document.getElementById('my-form').style.background = '#f4f4f4';
-    document.querySelector('body').classList.add('bg-dark');
-    ul.lastElementChild.innerHTML = '<h1>Changed</h1>';
-});
-
-// Keyboard Event
-const nameInput = document.querySelector('#name');
-nameInput.addEventListener('input', (e) => {
-    console.log(e.target.value);
-});
-
-// Form Event
-const myForm = document.querySelector('#my-form');
-const nameInput2 = document.querySelector('#name');
-const emailInput = document.querySelector('#email');
-const msg = document.querySelector('.msg');
-const userList = document.querySelector('#users');
-
-myForm.addEventListener('submit', onSubmit);
-
-function onSubmit(e) {
-}
-
-// Local Storage
-// set local storage item
-localStorage.setItem('name', 'John');
-localStorage.setItem('age', '30');
-
-// set session storage item
-sessionStorage.setItem('name', 'Beth');
-
-// remove local storage item
-localStorage.removeItem('name');
-
-// get from storage
-const name1 = localStorage.getItem('name');
-const age1 = localStorage.getItem('age');
-
-// clear local storage
-localStorage.clear();
-console.log(name1, age1);
-
-document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const task = document.getElementById('task').value;
-    let tasks;
-    if(localStorage.getItem('tasks') === null) {
-        tasks = [];
-    } else {
-        tasks = JSON.parse(localStorage.getItem('tasks'));
-    }
-    tasks.push(task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    alert('Task saved');
-});
-
-const tasks = JSON.parse(localStorage.getItem('tasks'));
-tasks.forEach(function(task) {
-    console.log(task);
-});
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// // ELEMENT SELECTORS
-//
+// // DOM
 // // Single Element Selectors
+// // document.getElementById()
+// const form = document.getElementById('my-form');
+// console.log(form);
 // console.log(document.getElementById('my-form'));
-// console.log(document.querySelector('.container'));
 // console.log(document.querySelector('h1'));
 //
+//
+// myForm.addEventListener('submit', onSubmit() {
+//     function onSubmit(e) {
+//         e.preventDefault();
+//
+//         if(nameInput.value === '' || emailInput.value === '') {
+//             msg.classList.add('error');
+//             msg.innerHTML = 'Please enter all fields';
+//             setTimeout(() => msg.remove(), 3000);
+//         }   else {
+//             const li = document.createElement('li');
+//             li.appendChild(document.createTextNode(`${nameInput.value}: ${emailInput.value}`));
+//             userList.appendChild(li);
+//             nameInput.value = '';
+//             emailInput.value = '';
+//     }
+// }
 // // Multiple Element Selectors
+// // document.querySelectorAll()
 // console.log(document.querySelectorAll('.item'));
-// console.log(document.getElementsByTagName('li'));
 // console.log(document.getElementsByClassName('item'));
+// console.log(document.getElementsByTagName('li'));
 //
 // const items = document.querySelectorAll('.item');
 // items.forEach((item) => console.log(item));
 //
-//
-// // MANIPULATING THE DOM
+// // Manipulating the DOM
 // const ul = document.querySelector('.items');
 // // ul.remove();
 // // ul.lastElementChild.remove();
 // ul.firstElementChild.textContent = 'Hello';
-// ul.children[1].innerText = 'Brad';
+// ul.children[1].innerconsole.log(document.getElementById('my-form'));Text = 'Brad';
 // ul.lastElementChild.innerHTML = '<h1>Hello</h1>';
 //
 // const btn = document.querySelector('.btn');
-// // btn.style.background = 'red';
+// btn.style.background = 'red';
 //
-//
-// // EVENTS
-//
+// // Events
 // // Mouse Event
-// btn.addEventListener('click', e => {
-//   e.preventDefault();
-//   console.log(e.target.className);
-//   document.getElementById('my-form').style.background = '#ccc';
-//   document.querySelector('body').classList.add('bg-dark');
-//   ul.lastElementChild.innerHTML = '<h1>Changed</h1>';
+// btn.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     console.log(e.target.className);
+//     document.getElementById('my-form').style.background = '#f4f4f4';
+//     document.querySelector('body').classList.add('bg-dark');
+//     ul.lastElementChild.innerHTML = '<h1>Changed</h1>';
 // });
 //
 // // Keyboard Event
 // const nameInput = document.querySelector('#name');
-// nameInput.addEventListener('input', e => {
-//   document.querySelector('.container').append(nameInput.value);
+// nameInput.addEventListener('input', (e) => {
+//     console.log(e.target.value);
 // });
 //
-//
-// // USER FORM SCRIPT
-//
-// // Put DOM elements into variables
+// // Form Event
 // const myForm = document.querySelector('#my-form');
-// const nameInput = document.querySelector('#name');
+// const nameInput2 = document.querySelector('#name');
 // const emailInput = document.querySelector('#email');
 // const msg = document.querySelector('.msg');
 // const userList = document.querySelector('#users');
 //
-// // Listen for form submit
 // myForm.addEventListener('submit', onSubmit);
 //
 // function onSubmit(e) {
-//   e.preventDefault();
-//
-//   if(nameInput.value === '' || emailInput.value === '') {
-//     // alert('Please enter all fields');
-//     msg.classList.add('error');
-//     msg.innerHTML = 'Please enter all fields';
-//
-//     // Remove error after 3 seconds
-//     setTimeout(() => msg.remove(), 3000);
-//   } else {
-//     // Create new list item with user
-//     const li = document.createElement('li');
-//
-//     // Add text node with input values
-//     li.appendChild(document.createTextNode(`${nameInput.value}: ${emailInput.value}`));
-//
-//     // Add HTML
-//     // li.innerHTML = `<strong>${nameInput.value}</strong>e: ${emailInput.value}`;
-//
-//     // Append to ul
-//     userList.appendChild(li);
-//
-//     // Clear fields
-//     nameInput.value = '';
-//     emailInput.value = '';
-//   }
 // }
+//
+// // Local Storage
+// // set local storage item
+// localStorage.setItem('name', 'John');
+// localStorage.setItem('age', '30');
+//
+// // set session storage item
+// sessionStorage.setItem('name', 'Beth');
+//
+// // remove local storage item
+// localStorage.removeItem('name');
+//
+// // get from storage
+// const name1 = localStorage.getItem('name');
+// const age1 = localStorage.getItem('age');
+//
+// // clear local storage
+// localStorage.clear();
+// console.log(name1, age1);
+//
+// document.querySelector('form').addEventListener('submit', function(e) {
+//     e.preventDefault();
+//     const task = document.getElementById('task').value;
+//     let tasks;
+//     if(localStorage.getItem('tasks') === null) {
+//         tasks = [];
+//     } else {
+//         tasks = JSON.parse(localStorage.getItem('tasks'));
+//     }
+//     tasks.push(task);
+//     localStorage.setItem('tasks', JSON.stringify(tasks));
+//     alert('Task saved');
+// });
+//
+// const tasks = JSON.parse(localStorage.getItem('tasks'));
+// tasks.forEach(function(task) {
+//     console.log(task);
+// });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ELEMENT SELECTORS
+
+// Single Element Selectors
+console.log(document.getElementById('my-form'));
+console.log(document.querySelector('.container'));
+console.log(document.querySelector('h1'));
+
+// Multiple Element Selectors
+console.log(document.querySelectorAll('.item'));
+console.log(document.getElementsByTagName('li'));
+console.log(document.getElementsByClassName('item'));
+
+const items = document.querySelectorAll('.item');
+items.forEach((item) => console.log(item));
+
+
+// MANIPULATING THE DOM
+const ul = document.querySelector('.items');
+// ul.remove();
+// ul.lastElementChild.remove();
+ul.firstElementChild.textContent = 'Hello';
+ul.children[1].innerText = 'Brad';
+ul.lastElementChild.innerHTML = '<h1>Hello</h1>';
+
+const btn = document.querySelector('.btn');
+// btn.style.background = 'red';
+
+
+// EVENTS
+
+// Mouse Event
+btn.addEventListener('click', e => {
+  e.preventDefault();
+  console.log(e.target.className);
+  document.getElementById('my-form').style.background = '#ccc';
+  document.querySelector('body').classList.add('bg-dark');
+  ul.lastElementChild.innerHTML = '<h1>Changed</h1>';
+});
+
+// Keyboard Event
+const nameInput = document.querySelector('#name');
+nameInput.addEventListener('input', e => {
+  document.querySelector('.container').append(nameInput.value);
+});
+
+
+// USER FORM SCRIPT
+
+// Put DOM elements into variables
+const myForm = document.querySelector('#my-form');
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const msg = document.querySelector('.msg');
+const userList = document.querySelector('#users');
+
+// Listen for form submit
+myForm.addEventListener('submit', onSubmit);
+
+function onSubmit(e) {
+  e.preventDefault();
+
+  if(nameInput.value === '' || emailInput.value === '') {
+    // alert('Please enter all fields');
+    msg.classList.add('error');
+    msg.innerHTML = 'Please enter all fields';
+
+    // Remove error after 3 seconds
+    setTimeout(() => msg.remove(), 3000);
+  } else {
+    // Create new list item with user
+    const li = document.createElement('li');
+
+    // Add text node with input values
+    li.appendChild(document.createTextNode(`${nameInput.value}: ${emailInput.value}`));
+
+    // Add HTML
+    // li.innerHTML = `<strong>${nameInput.value}</strong>e: ${emailInput.value}`;
+
+    // Append to ul
+    userList.appendChild(li);
+
+    // Clear fields
+    nameInput.value = '';
+    emailInput.value = '';
+  }
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Asynchronous JavaScript
 // Synchronous
