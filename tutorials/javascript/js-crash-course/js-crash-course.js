@@ -216,3 +216,86 @@ console.log(addNums(5, 4));
 // Arrow Function
 const addNums = (num1, num2) => num1 + num2;
 console.log(addNums(5, 4));
+
+// Object Oriented Programming
+// Constructor Function
+function Person(firstName, lastName, dob) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dob = new Date(dob);
+    this.getBirthYear = function() {
+        return this.dob.getFullYear();
+    }
+    this.getFullName = function() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+}
+
+// Instantiate Object
+const person1 = new Person('John', 'Doe', '4-3-1980');
+const person2 = new Person('Mary', 'Smith', '3-6-1970');
+console.log(person1);
+console.log(person2.dob);
+console.log(person1.getBirthYear());
+console.log(person1.getFullName());
+
+
+// Prototypes
+function Person(firstName, lastName, dob) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dob = new Date(dob);
+}
+Person.prototype.getBirthYear = function() {
+    return this.dob.getFullYear();
+}
+Person.prototype.getFullName = function() {
+    return `${this.firstName} ${this.lastName}`;
+}
+
+// Instantiate Object
+const person1 = new Person('John', 'Doe', '4-3-1980');
+const person2 = new Person('Mary', 'Smith', '3-6-1970');
+console.log(person1);
+console.log(person2.dob);
+console.log(person1.getBirthYear());
+console.log(person1.getFullName());
+
+
+// ES6 Classes
+class Person {
+    constructor(firstName, lastName, dob) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = new Date(dob);
+    }
+    getBirthYear() {
+        return this.dob.getFullYear();
+    }
+    getFullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+}
+
+// Instantiate Object
+const person1 = new Person('John', 'Doe', '4-3-1980');
+const person2 = new Person('Mary', 'Smith', '3-6-1970');
+console.log(person1);
+console.log(person2.dob);
+console.log(person1.getBirthYear());
+
+
+// DOM
+// Single Element Selectors
+// document.getElementById()
+console.log(document.getElementById('my-form'));
+const form = document.getElementById('my-form');
+console.log(form);
+console.log(document.querySelector('h1'));
+
+// Multiple Element Selectors
+// document.querySelectorAll()
+console.log(document.querySelectorAll('.item'));
+console.log(document.getElementsByClassName('item'));
+console.log(document.getElementsByTagName('li'));
+
