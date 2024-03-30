@@ -36,6 +36,9 @@ CREATE TABLE all_stations (
     geo_point POINT
 );
 
+--=====================================================================================
+--Update the divvy_trips table
+
 -- Update ride_length
 UPDATE cyclistic.divvy_trips
 SET ride_length = ended_at - started_at;
@@ -83,7 +86,8 @@ SET start_ride_tod =
 UPDATE cyclistic.divvy_trips
 SET week = EXTRACT(WEEK FROM started_at);
 
-
+--=====================================================================================
+--Insert the data in all_stations table and fix missing station information
 
 -- Insert stations data into all_stations table
 INSERT INTO all_stations
@@ -122,7 +126,7 @@ FROM all_stations;
 SELECT *
 FROM duplicate_stations;
 
--- See what column is not null in the duplicate_stations table
+-- Find all the records where the name is null by each column in all_stations
 SELECT count(*)
 FROM duplicate_stations
 WHERE id IS NULL;
@@ -153,6 +157,16 @@ SELECT count(*)
 FROM duplicate_stations
 WHERE geo_point IS NOT NULL;
 
+-- Fill in the missing values in the station names based on the matching geo points
+UPDATE duplicate_stations
+SET name = (SELECT name
+            FROM duplicate_stations
+            WHERE ds.latitude = latitude AND ds.longitude = longitude AND name IS NOT NULL
+            LIMIT 1)
+FROM duplicate_stations ds
+WHERE duplicate_stations.name IS NULL
+AND duplicate_stations.geo_point IS NOT NULL;
+
 
 -- Delete the duplicate stations from the all_stations table
 DELETE FROM all_stations
@@ -161,7 +175,7 @@ WHERE id IN (SELECT id
              GROUP BY id
              HAVING COUNT(*) > 1);
 
--- Update the geo_point column
+--Update all_stations geo_point column
 UPDATE all_stations
 SET geo_point = POINT(longitude, latitude);
 
@@ -171,6 +185,7 @@ SET geo_point = POINT(longitude, latitude);
 ALTER TABLE divvy_trips
     ADD CONSTRAINT pk_ride_id
         PRIMARY KEY (ride_id);
+
 -- Add a primary key constraint for the all_stations table
 ALTER TABLE all_stations
     ADD CONSTRAINT pk_station_id
@@ -368,3 +383,68 @@ SELECT COUNT(*)
 FROM divvy_trips dt
 WHERE END_RIDE_TOD IS NULL;
 --There are 0 null values in
+
+
+-- #Find the inconsistent data in divvy_trips
+-- #Create a new data frame from the inconsistent data
+-- #Count the null values in  a column
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual IS NULL;
+
+
+-- #Check and correct the spelling of the membership values
+SELECT member_casual, COUNT(*)
+FROM divvy_trips
+GROUP BY member_casual;
+
+-- #Correct the spelling of the membership values
+UPDATE divvy_trips
+SET member_casual = 'casual'
+WHERE member_casual = 'Casual';
+
+UPDATE divvy_trips
+SET member_casual = 'member'
+WHERE member_casual = 'Member';
+
+
+
+
+-- #Find the ride lengths that are not a positive number and less than 0 in divvy_trips, and You might need to add explicit type casts.
+SELECT *
+FROM divvy_trips
+WHERE EXTRACT(EPOCH FROM ride_length) < 0;
+
+
+-- #Summary of the year 2020
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2020;
+
+-- #Summary of the year 2021
+-- #Summary of the year 2022
+-- #Summary of the year 2023
+-- #Summary of the months in 2020
+-- #Summary of the months in 2021
+-- #Summary of the months in 2022
+-- #Summary of the months in 2023
+-- #Summary of the seasons in 2020
+-- #Summary of the seasons in 2021
+-- #Summary of the seasons in 2022
+-- #Summary of the seasons in 2023
+-- #Calculate the amount of annual member all together
+-- #Calculate the amount of annual members in the year 2020
+-- #Calculate the amount of annual members in the year 2021
+-- #Calculate the amount of annual members in the year 2022
+-- #Calculate the amount of annual members in the year 2023
+-- #Calculate the amount of annual members in a specific season of the specific year
+-- #Calculate the amount of annual member in the specific months in the specific year
+-- #Calculate the amount of casual member all together
+-- #Calculate the amount of casual members in the year 2020
+-- #Calculate the amount of casual members in the year 2021
+-- #Calculate the amount of casual members in the year 2022
+-- #Calculate the amount of casual members in the year 2023
+-- #Calculate the amount of casual members in a specific season of the specific year
+-- #Calculate the amount of casual member in the specific months in the specific year
+
+
