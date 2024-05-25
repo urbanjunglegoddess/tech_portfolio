@@ -239,3 +239,11 @@ a:hover{
     bottom: 200px;
     left: 200px;
 }
+
+.div {
+display: grid;
+grid-template-columns: repeat(6, 1fr);
+grid-template-rows: repeat(6, 1fr);
+grid-column-gap: 5px;
+grid-row-gap: 5px;
+}
