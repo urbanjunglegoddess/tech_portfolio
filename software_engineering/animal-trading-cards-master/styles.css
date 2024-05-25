@@ -1,11 +1,12 @@
 /* add your CSS here */
 body{
+display:block;
 
 
 }
 
 h3{
-
+font: small-caps 24px Helvetica;
 
 }
 
