@@ -126,6 +126,8 @@ FROM all_stations;
 SELECT *
 FROM duplicate_stations;
 
+--=====================================================================================
+
 -- Find all the records where the name is null by each column in all_stations
 SELECT count(*)
 FROM duplicate_stations
@@ -167,6 +169,7 @@ FROM duplicate_stations ds
 WHERE duplicate_stations.name IS NULL
 AND duplicate_stations.geo_point IS NOT NULL;
 
+--=====================================================================================
 
 -- Delete the duplicate stations from the all_stations table
 DELETE FROM all_stations
@@ -179,7 +182,7 @@ WHERE id IN (SELECT id
 UPDATE all_stations
 SET geo_point = POINT(longitude, latitude);
 
-
+--=====================================================================================
 
 -- Add a primary key constraint for the divvy_trips table
 ALTER TABLE divvy_trips
@@ -201,7 +204,7 @@ ALTER TABLE divvy_trips
     ADD CONSTRAINT fk_end_station_id
         FOREIGN KEY (id) REFERENCES divvy_trips (end_station_id);
 
-
+--=====================================================================================
 -- Describe the divvy_trips table
 SELECT column_name, data_type
 FROM information_schema.columns
@@ -211,6 +214,8 @@ WHERE table_name = 'divvy_trips';
 SELECT column_name, data_type
 FROM information_schema.columns
 WHERE table_name = 'all_stations';
+
+--=====================================================================================
 
 -- Find how many records there are all together
 SELECT COUNT(*)
@@ -239,6 +244,8 @@ FROM divvy_trips dt;
 SELECT started_at
 FROM divvy_trips
 WHERE not (extract(year from "started_at") >= 2020 and extract(year from "started_at") <= 2023);
+
+--=====================================================================================
 
 -- Check for all  missing values in the data
 SELECT COUNT(*) AS missing_values
@@ -384,9 +391,8 @@ FROM divvy_trips dt
 WHERE END_RIDE_TOD IS NULL;
 --There are 0 null values in
 
+--=====================================================================================
 
--- #Find the inconsistent data in divvy_trips
--- #Create a new data frame from the inconsistent data
 -- #Count the null values in  a column
 SELECT COUNT(*)
 FROM divvy_trips
@@ -407,7 +413,7 @@ UPDATE divvy_trips
 SET member_casual = 'member'
 WHERE member_casual = 'Member';
 
-
+--=====================================================================================
 
 
 -- #Find the ride lengths that are not a positive number and less than 0 in divvy_trips, and You might need to add explicit type casts.
@@ -415,6 +421,47 @@ SELECT *
 FROM divvy_trips
 WHERE EXTRACT(EPOCH FROM ride_length) < 0;
 
+-- #Find the ride_distance that the rider has traveled in the divvy_trips table
+SELECT ride_id, start_station_name, end_station_name, start_location, end_location,
+       ST_Distance(start_location, end_location) AS ride_distance
+FROM divvy_trips;
+
+
+
+--=====================================================================================
+-- Summarize the data in the divvy_trips table by year, including the number of rides, the average ride length, minimum ride length, maximum ride length, and total ride length. You can use the EXTRACT() function to extract the year from the started_at column.
+SELECT EXTRACT(YEAR FROM started_at) AS year,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length)) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length)) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length)) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length)) AS total_ride_length
+FROM divvy_trips
+GROUP BY year;
+
+-- Convert the ride_length to minutes and round it to the nearest minute with the ROUND() function
+SELECT EXTRACT(YEAR FROM started_at) AS year,
+       COUNT(*) AS number_of_rides,
+     Round(AVG(EXTRACT(EPOCH FROM ride_length) / 60)) AS average_ride_length,
+       ROUND(MIN(EXTRACT(EPOCH FROM ride_length) / 60)) AS min_ride_length,
+       ROUND(MAX(EXTRACT(EPOCH FROM ride_length) / 60)) AS max_ride_length,
+       ROUND(SUM(EXTRACT(EPOCH FROM ride_length) / 60)) AS total_ride_length
+FROM divvy_trips
+GROUP BY year;
+
+
+
+
+SELECT EXTRACT(YEAR FROM started_at) AS year,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+GROUP BY year;
+
+--=====================================================================================
 
 -- #Summary of the year 2020
 SELECT COUNT(*)
@@ -422,29 +469,442 @@ FROM divvy_trips
 WHERE EXTRACT(YEAR FROM started_at) = 2020;
 
 -- #Summary of the year 2021
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2021;
+
 -- #Summary of the year 2022
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2022;
+
 -- #Summary of the year 2023
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2023;
+
 -- #Summary of the months in 2020
+SELECT EXTRACT(MONTH FROM started_at) AS month,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2020
+GROUP BY month;
+
 -- #Summary of the months in 2021
+SELECT EXTRACT(MONTH FROM started_at) AS month,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2021
+GROUP BY month;
+
 -- #Summary of the months in 2022
+SELECT EXTRACT(MONTH FROM started_at) AS month,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2022
+GROUP BY month;
+
 -- #Summary of the months in 2023
+SELECT EXTRACT(MONTH FROM started_at) AS month,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2023
+GROUP BY month;
+
 -- #Summary of the seasons in 2020
+SELECT season,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2020
+GROUP BY season;
+
 -- #Summary of the seasons in 2021
+SELECT season,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2021
+GROUP BY season;
+
 -- #Summary of the seasons in 2022
+SELECT season,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2022
+GROUP BY season;
+
 -- #Summary of the seasons in 2023
+SELECT season,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) = 2023
+GROUP BY season;
+
 -- #Calculate the amount of annual member all together
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'member';
+
 -- #Calculate the amount of annual members in the year 2020
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'member'
+AND EXTRACT(YEAR FROM started_at) = 2020;
+
 -- #Calculate the amount of annual members in the year 2021
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'member'
+AND EXTRACT(YEAR FROM started_at) = 2021;
+
 -- #Calculate the amount of annual members in the year 2022
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'member'
+AND EXTRACT(YEAR FROM started_at) = 2022;
+
 -- #Calculate the amount of annual members in the year 2023
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'member'
+AND EXTRACT(YEAR FROM started_at) = 2023;
+
 -- #Calculate the amount of annual members in a specific season of the specific year
+SELECT season,
+       COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'member'
+GROUP BY season;
+
 -- #Calculate the amount of annual member in the specific months in the specific year
+SELECT EXTRACT(MONTH FROM started_at) AS month,EXTRACT(YEAR FROM started_at) AS year,
+       COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'member'
+GROUP BY month, year
+ORDER BY year, month;
+
 -- #Calculate the amount of casual member all together
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'casual';
+
 -- #Calculate the amount of casual members in the year 2020
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'casual'
+AND EXTRACT(YEAR FROM started_at) = 2020;
+
 -- #Calculate the amount of casual members in the year 2021
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'casual'
+AND EXTRACT(YEAR FROM started_at) = 2021;
+
 -- #Calculate the amount of casual members in the year 2022
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'casual'
+AND EXTRACT(YEAR FROM started_at) = 2022;
+
 -- #Calculate the amount of casual members in the year 2023
+SELECT COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'casual'
+AND EXTRACT(YEAR FROM started_at) = 2023;
+
 -- #Calculate the amount of casual members in a specific season of the specific year
+SELECT season,
+       COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'casual'
+GROUP BY season;
+
 -- #Calculate the amount of casual member in the specific months in the specific year
+SELECT EXTRACT(MONTH FROM started_at) AS month,EXTRACT(YEAR FROM started_at) AS year,
+       COUNT(*)
+FROM divvy_trips
+WHERE member_casual = 'casual'
+GROUP BY month, year
+ORDER BY year, month;
+
+-- #Count the number of rides by member type
+SELECT member_casual, COUNT(*)
+FROM divvy_trips
+GROUP BY member_casual;
+
+-- #Calculate the percentage of ride taken by each type of member with the years 2020-2023
+SELECT EXTRACT(YEAR FROM started_at) AS year,
+       member_casual,
+       COUNT(*) AS number_of_rides,
+       ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (PARTITION BY EXTRACT(YEAR FROM started_at)), 2) AS percentage_of_rides
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) BETWEEN 2020 AND 2023
+GROUP BY year, member_casual;
+
+-- #Find the ride counts by member type and season
+SELECT season,
+       member_casual,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+GROUP BY season, member_casual;
+
+-- #Average ride by member type
+SELECT member_casual,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length
+FROM divvy_trips
+GROUP BY member_casual;
+
+-- #Summary by member type
+SELECT member_casual,
+       COUNT(*) AS number_of_rides,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length,
+       MIN(EXTRACT(EPOCH FROM ride_length) / 60) AS min_ride_length,
+       MAX(EXTRACT(EPOCH FROM ride_length) / 60) AS max_ride_length,
+       SUM(EXTRACT(EPOCH FROM ride_length) / 60) AS total_ride_length
+FROM divvy_trips
+GROUP BY member_casual;
+
+-- #Proportion of member types
+SELECT member_casual,
+       COUNT(*) AS number_of_rides,
+       ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS proportion_of_rides
+FROM divvy_trips
+GROUP BY member_casual;
+
+-- #Proportion of member types by season
+SELECT season,
+       member_casual,
+       COUNT(*) AS number_of_rides,
+       ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (PARTITION BY season), 2) AS proportion_of_rides
+FROM divvy_trips
+GROUP BY season, member_casual;
+
+-- #Calculate who rode the most between casual members and annual members between 2020 to 2023
+SELECT EXTRACT(YEAR FROM started_at) AS year,
+       member_casual,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) BETWEEN 2020 AND 2023
+GROUP BY year, member_casual
+ORDER BY year, number_of_rides DESC;
+
+-- #Calculate the average ride length by member type and season
+SELECT season,
+       member_casual,
+       AVG(EXTRACT(EPOCH FROM ride_length) / 60) AS average_ride_length
+FROM divvy_trips
+GROUP BY season, member_casual;
+
+-- Where do casual members go on a regular basis
+SELECT start_station_name,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+WHERE member_casual = 'casual'
+GROUP BY start_station_name
+ORDER BY number_of_rides DESC;
+
+-- Where do annual members go on a regular basis
+SELECT start_station_name,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+WHERE member_casual = 'member'
+GROUP BY start_station_name
+ORDER BY number_of_rides DESC;
+
+-- How many members are gained by the end of each year
+SELECT EXTRACT(YEAR FROM started_at) AS year,
+       COUNT(*) AS number_of_rides,
+       SUM(COUNT(*)) OVER (ORDER BY EXTRACT(YEAR FROM started_at)) AS total_rides
+FROM divvy_trips
+WHERE EXTRACT(YEAR FROM started_at) BETWEEN 2020 AND 2023
+GROUP BY year;
+
+-- What times and days are most popular by both groups
+SELECT start_ride_tod,
+       start_day,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+GROUP BY start_ride_tod, start_day
+ORDER BY number_of_rides DESC;
+
+--  Where do most causal members start their rides
+SELECT start_station_name,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+WHERE member_casual = 'casual'
+GROUP BY start_station_name
+ORDER BY number_of_rides DESC;
+
+-- Where do most annual members start their rides
+SELECT start_station_name,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+WHERE member_casual = 'member'
+GROUP BY start_station_name
+ORDER BY number_of_rides DESC;
+
+-- What is the longest ride?
+SELECT ride_id,
+       start_station_name,
+       end_station_name,
+       EXTRACT(EPOCH FROM ride_length) / 60 AS ride_length
+FROM divvy_trips
+ORDER BY ride_length DESC
+LIMIT 1;
+
+-- What is the shortest ride?
+SELECT ride_id,
+       start_station_name,
+       end_station_name,
+       EXTRACT(EPOCH FROM ride_length) / 60 AS ride_length
+FROM divvy_trips
+ORDER BY ride_length
+LIMIT 1;
+
+-- What group ride the most
+SELECT member_casual,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+GROUP BY member_casual
+ORDER BY number_of_rides DESC
+LIMIT 1;
+
+-- What group ride the least
+SELECT member_casual,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+GROUP BY member_casual
+ORDER BY number_of_rides
+LIMIT 1;
+
+-- how many more annual are there
+SELECT member_casual,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+GROUP BY member_casual
+ORDER BY number_of_rides DESC
+LIMIT 1;
+
+-- How many more annual members ride in a day vs casual members
+SELECT start_day,
+       member_casual,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+GROUP BY start_day, member_casual
+ORDER BY number_of_rides DESC;
+
+-- Who is riding everyday based on location and membership
+SELECT start_station_name,
+       member_casual,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+GROUP BY start_station_name, member_casual
+ORDER BY number_of_rides DESC;
+
+-- What is the busiest station
+SELECT start_station_name,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+GROUP BY start_station_name
+ORDER BY number_of_rides DESC
+LIMIT 1;
+
+-- What is the slowest station
+SELECT start_station_name,
+       COUNT(*) AS number_of_rides
+FROM divvy_trips
+GROUP BY start_station_name
+ORDER BY number_of_rides
+LIMIT 1;
+
+-- What is the average ride length by month, day , hour, week, season, year using a helper function
 
 
+
+-- What hour, day, week, month, season, year is more popular than others
+
+-- What hour, day, week, month has the most rides during each season
+-- What hour, day, week during each month gets the most rides
+-- What hour, day, week during each season gets the most rides
+-- What hour, day, week during each year gets the most rides
+-- When do rides tend to slow down each month, season, year
+-- What bike types are used the most
+-- Figure out the info on the bike types
+-- What bike type at what station is available
+-- How many from each group use a specific bike type
+-- What time of day is the busiest
+-- How many rides are being taken each hour, day, week, month, season, year
+-- At each station when is the first bike ride and by who
+-- How far are people traveling on the bikes
+-- What group of people are traveling for longer distances
+-- Where are the most common start and end locations based on each group
+-- Summarize every year
+-- Summarize what every group does in each hour, day, week, month, season, year
+-- What is the average ride length every hour, day, week, month, season, year
+-- What is the average ride length every hour, day, week, month, season, year by each group
+-- What is the mix and min ride length every hour, day, week, month, season, year
+-- What is the mix and min ride length every hour, day, week, month, season, year by group
+-- What hour, day, week, month, season, year are the most popular at each station
+-- What is the mode ride length for each hour, day, week, month, season, year
+-- What is the mode ride length for each hour, day, week, month, season, year by group
+-- What is the most popular route
+
+--=====================================================================================
+SELECT *
+FROM pg_extension;
+
+SELECT * FROM pg_available_extensions
+
+SELECT oid, extname, extversion FROM pg_extension;
+
+-- #Check if the postgis extension is installed
+SELECT * FROM pg_extension
+WHERE extname = 'postgis';
+
+
+-- #Install the postgis extension
+CREATE EXTENSION postgis;
+
+-- Install the postgis_raster extension
+CREATE EXTENSION postgis_raster;
+
+--Install the postgis_tiger_geocoder extension
+CREATE EXTENSION postgis_tiger_geocoder CASCADE;
+
+-- Install the postgis_topology extension
+CREATE EXTENSION postgis_topology;
+
+-- Install the postgis_sfcgal extension
+CREATE EXTENSION postgis_sfcgal;
