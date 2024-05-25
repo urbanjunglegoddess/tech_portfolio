@@ -10,6 +10,7 @@ box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 h3{
 font: small-caps 24px Helvetica;
 padding: 1px;
+border: 1px dot-dot-dash black;
 }
 
 img{
