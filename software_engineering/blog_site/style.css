@@ -12,16 +12,44 @@ footer{}
 img{
     width:200px;
     height:200px;
+    border_radius:10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 nav{
-    display:flex;
-
+    display:box;
+    justify-content:space-between;
+    padding: 10px 16px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
 }
+
 aside{}
 article{}
-input{}
-button{}
-textarea{}
+input{
+    padding: 10px 16px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+}
+textarea{
+    padding: 10px 16px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+}
+button{
+    padding: 10px 16px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none
+}
 
 
 /* Elements */
@@ -40,10 +68,27 @@ p{
 }
 a{
  font: 18px "Times New Roman";
+    display:box;
+    justify-content:space-between;
+    padding: 10px 16px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    background-color: #4CAF50;
+color: white;
 }
 ul{}
 ol{}
-li {}
+li {
+    display:box;
+    justify-content:space-between;
+    padding: 10px 16px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+}
 span{}
 
 
@@ -102,3 +147,37 @@ form {
     display: flex;
     flex-direction: column;
 }
+
+
+
+.author {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* This creates 2 equal columns */
+    grid-gap: 20px; /* This adds some space between the grid items */
+}
+
+#avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+     grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+#blog_title{
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#author_name {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#author_company {
+    grid-column: 2;
+    grid-row: 3;
+}
+
