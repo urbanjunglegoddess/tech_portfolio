@@ -76,9 +76,10 @@ a{
     font-size: 16px;
     border: none;
     background-color: #4CAF50;
-color: white;
+    color: white;
+
 }
-ul{}
+ul{ list-style: none;}
 ol{}
 li {
     display:box;
@@ -94,10 +95,14 @@ span{}
 
 .card {
   /* Add shadows to create the "card" effect */
+   background-color: white;
+    flex: 0 0 auto;
+    scroll-snap-align: center;
     width:200px;
     height:450px;
      padding: 10px 16px;
     margin: 10px 5px;
+    border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
 }
@@ -112,12 +117,7 @@ span{}
     overflow: auto;
     scroll-snap-type: x mandatory;
     scroll-padding: 50%;
-}
-
-.card {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-    /* Add your existing .card styles here */
+     background-color: wheat;
 }
 
 .carousel-btn {
@@ -127,6 +127,7 @@ span{}
     font-size: 2em;
     background: none;
     border: none;
+   background-color: darkviolet;
 }
 
 #prevBtn {
@@ -136,7 +137,9 @@ span{}
 #nextBtn {
     right: 10px;
 }
+#featured_cards{
 
+}
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
