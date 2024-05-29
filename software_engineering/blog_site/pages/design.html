@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog Design</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="assests/fonts/stylesheet.css">
 </head>
 <body>
@@ -27,13 +27,19 @@
         <h6> Heading Six</h6>
     </div>
 
+<br>
     <!--Paragraph-->
     <div class="box"><p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum deleniti <strong>laboriosam, magni non numquam qui reprehenderit</strong> sequi vitae? Aperiam atque eum fugit ratione voluptatibus! Delectus doloribus <a href="http://google.com" target="_blank"> impedit possimus tempora vel!</a>
     </p>
+
+        <br>
+
     <p> Lorem ipsum dolor sit amet, <em>consectetur adipisicing</em> elit. Enim, nulla.
     </p>
     </div>
+
+    <br>
 
     <!-- Lists -->
     <div class="box"><ul>
@@ -52,12 +58,14 @@
     </ol>
     </div>
 
-
+<br>
 
     <!-- Image -->
     <div class="box">
-        <img src="assests/images/placeholder.png" alt="Image">
+        <img src="../assests/images/placeholder.png" alt="Image">
     </div>
+
+    <br>
 
     <!-- Blockquote -->
     <div class="box">
@@ -67,13 +75,16 @@
         </blockquote>
     </div>
 
+    <br>
     <!--Card-->
     <div class="card">
         <h3>Card Title</h3>
-        <img src="assests/images/placeholder.png" alt="Image">
+        <img src="../assests/images/placeholder.png" alt="Image">
         <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam atque eum fugit ratione voluptatibus! Delectus doloribus impedit possimus tempora vel!</p>
-        <a href="#">Read More</a>
+       <a href="blog-post.html"><button class="read-more" type="button">Read More</button></a>
     </div>
+
+    <br>
 
     <!--Social Share-->
     <div class="social">
@@ -81,6 +92,19 @@
         <a href="#" class="twitter">Twitter</a>
         <a href="#" class="instagram">Instagram</a>
     </div>
+
+    <br>
+
+    <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Name">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Message"></textarea>
+        <input type="submit" value="Submit">
+    </form>
+
 
 
 <!-- Footer -->

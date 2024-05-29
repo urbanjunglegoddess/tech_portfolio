@@ -1,0 +1,16 @@
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: end;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+}
+
+.subscribe-form {
+    display: flex;
+    align-items: center;
+}
+#subscribe-email {
+    margin-right: 20px;
+}

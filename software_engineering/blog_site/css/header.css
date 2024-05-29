@@ -1,0 +1,26 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    right: 0;
+}
+#site-search {
+    margin-right: 20px;
+}
+nav{
+    display:box;
+    justify-content:space-between;
+    padding: 10px 16px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+}
