@@ -15,12 +15,38 @@ header form {
 #site-search {
     margin-right: 20px;
 }
-nav{
-    display:box;
-    justify-content:space-between;
-    padding: 10px 16px;
-    margin: 10px 5px;
-    border-radius: 5px;
-    font-size: 16px;
-    border: none;
+nav {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+/* Style the navigation bar links */
+nav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+
+/* Right-aligned link */
+nav a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Active/current link */
+.navbar a.active {
+  background-color: #666;
+  color: white;
 }

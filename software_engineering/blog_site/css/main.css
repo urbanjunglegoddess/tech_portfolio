@@ -1,6 +1,21 @@
 @import url('core.css');
 @import url('header.css');
 @import url('footer.css');
-@import url('home.css');
 @import url('post.css');
 @import url('responsive.css');
+@import url('cards.css');
+
+
+form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+form #site-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+

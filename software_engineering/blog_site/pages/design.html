@@ -3,21 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog Design</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="assests/fonts/stylesheet.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
+
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
+<div class="sidebar">
+    <h1> Sidebar Component</h1>
+    <div class="sidebar-content">
+        <h2>Recent Posts</h2>
+        <ul>
+            <li><a href="blog-post.html">Blog Post 1</a></li>
+            <li><a href="blog-post.html">Blog Post 2</a></li>
+            <li><a href="blog-post.html">Blog Post 3</a></li>
+            <li><a href="blog-post.html">Blog Post 4</a></li>
+        </ul>
+
+        <div class="author">
+
+        <img id="avatar" src="../assests/images/placeholder/100%20x%20100%20px.png" alt="Author Image">
+        <figcaption>Author Image</figcaption>
+
+          <h2 id="blog_title">Blog Title</h2>
+
+        <h2 class="author_info" id="author_name">Omegea Hunter</h2>
+
+        <blockquote class="author_info" id="author_bio">ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit</blockquote>
+
+        <p class="author_info" id="author_comp">Fierce Peace </p>
+
+    </div>
+
+    </div>
+
+
+</div>
+
+
+<div id="header-nav">
+<h1> Header Component</h1>
+        <nav >
+             <ul>
+                <li ><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#blog">Blog</a></li>
             </ul>
         </nav>
-    </header>
+</div>
 
+<div id="seach-bar">
+<h1> Search Bar Component </h1>
+         <form action="/search" method="get">
+    <input type="search" id="site-search" name="site-search" aria-label="Search through site content">
+    <button>Search</button>
+        </form>
+</div>
+
+<div id="banner">
+<h1> Banner Component</h1>
+    <img class="banner_img" id="about-banner" src="../assests/images/placeholder/1080%20x%20200%20px.png" atl="1080 x 200 placeholder">
+    <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
+</div>
+
+<div>
+      <h1>Heading text</h1>
     <div class="container">
         <h1> Heading One</h1>
         <h2> Heading Two</h2>
@@ -27,29 +77,58 @@
         <h6> Heading Six</h6>
     </div>
 
-<br>
+    </div>
+
+<div id="paragraph">
+<h1>Paragraph Component</h1>
+
     <!--Paragraph-->
-    <div class="box"><p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum deleniti <strong>laboriosam, magni non numquam qui reprehenderit</strong> sequi vitae? Aperiam atque eum fugit ratione voluptatibus! Delectus doloribus <a href="http://google.com" target="_blank"> impedit possimus tempora vel!</a>
+    <div class="box">
+
+        <h5>Bolded Text</h5>
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum deleniti <b>laboriosam, magni non numquam qui reprehenderit</b> sequi vitae?
+        </p>
+
+        <h5>Linked Text</h5>
+        <p>
+        Aperiam atque eum fugit ratione voluptatibus! Delectus doloribus <a href="http://google.com" target="_blank"> impedit possimus tempora vel!</a>
     </p>
 
-        <br>
+        <h5>Emphasized Text</h5>
 
     <p> Lorem ipsum dolor sit amet, <em>consectetur adipisicing</em> elit. Enim, nulla.
     </p>
+
+        <h5>Underlined Text</h5>
+
+        <p>laoreet suspendisse interdum <u> consectetur libero id faucibus nisl tincidunt eget nullam</u> non nisi est sit</p>
+
+        <h5>Highlighted Text</h5>
+        <p> cursus euismod quis <mark>viverra nibh cras pulvinar mattis nunc </mark> sed blandit libero volutpat sed cras</p>
+
+        <h5>Subscript Text</h5>
+        <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo<sub> laoreet sit amet cursus sit amet dictum sit </sub>amet justo donec enim</p>
+
+        <h5>Superscript Text</h5>
+        <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo<sup> laoreet sit amet cursus sit amet dictum sit </sup>amet justo donec enim</p>
     </div>
 
-    <br>
+</div>
 
-    <!-- Lists -->
-    <div class="box"><ul>
+    <h5>Unordered Lists</h5>
+    <div>
+
+    <ul>
         <li>List Item 1</li>
         <li>List Item 2 </li>
         <li>List Item 3</li>
         <li>List Item 4 </li>
     </ul>
     </div>
-    <div class="box">
+
+    <h5>Ordered Lists</h5>
+    <div>
     <ol>
         <li>List Item 1</li>
         <li>List Item 2 </li>
@@ -58,34 +137,33 @@
     </ol>
     </div>
 
-<br>
 
+<h5>Image Component</h5>
     <!-- Image -->
-    <div class="box">
-        <img src="../assests/images/placeholder.png" alt="Image">
+    <div>
+        <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
     </div>
 
-    <br>
 
-    <!-- Blockquote -->
-    <div class="box">
+    <h5>Blockquote Component</h5>
+    <div>
         <blockquote>
             <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam atque eum fugit ratione voluptatibus! Delectus doloribus impedit possimus tempora vel!</p>
             <cite>Author</cite>
         </blockquote>
     </div>
 
-    <br>
-    <!--Card-->
+   <h5>Card Component</h5>
+
+
     <div class="card">
         <h3>Card Title</h3>
-        <img src="../assests/images/placeholder.png" alt="Image">
+        <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
         <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam atque eum fugit ratione voluptatibus! Delectus doloribus impedit possimus tempora vel!</p>
        <a href="blog-post.html"><button class="read-more" type="button">Read More</button></a>
     </div>
 
-    <br>
-
+    <h5> Social Media Component</h5>
     <!--Social Share-->
     <div class="social">
         <a href="#" class="facebook">Facebook</a>
@@ -93,7 +171,7 @@
         <a href="#" class="instagram">Instagram</a>
     </div>
 
-    <br>
+    <h5>Form Component</h5>
 
     <form>
         <label for="name">Name</label>
@@ -105,9 +183,69 @@
         <input type="submit" value="Submit">
     </form>
 
+    <h5>Carousal Component</h5>
+        <section id="featured_cards">
+        <h2>
+            Featured Posts
+        </h2>
+<div id="carousel" class="carousel">
 
+    <div class="card">
+            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
+            <h3>Blog Title</h3>
+            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
+        <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
+        </div>
+
+        <div class="card">
+            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
+            <h3>Blog Title</h3>
+            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
+            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
+        </div>
+
+        <div class="card">
+            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
+            <h3>Blog Title</h3>
+            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
+            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
+        </div>
+
+        <div class="card">
+            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
+            <h3>Blog Title</h3>
+            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
+            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
+        </div>
+
+        <div class="card">
+            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
+            <h3>Blog Title</h3>
+            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
+            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
+        </div>
+
+        <div class="card">
+            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
+            <h3>Blog Title</h3>
+            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
+            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
+        </div>
+
+        <div class="card">
+            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
+            <h3>Blog Title</h3>
+            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
+            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
+        </div>
+
+</div>
+
+    </section>
 
 <!-- Footer -->
+<h5>Footer Component</h5>
+
     <footer>
         <p>&copy; 2020 Omegea Blog</p>
     </footer>
