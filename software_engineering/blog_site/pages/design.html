@@ -8,40 +8,11 @@
 
 
 <body>
-<div class="sidebar">
-    <h1> Sidebar Component</h1>
-    <div class="sidebar-content">
-        <h2>Recent Posts</h2>
-        <ul>
-            <li><a href="blog-post.html">Blog Post 1</a></li>
-            <li><a href="blog-post.html">Blog Post 2</a></li>
-            <li><a href="blog-post.html">Blog Post 3</a></li>
-            <li><a href="blog-post.html">Blog Post 4</a></li>
-        </ul>
-
-        <div class="author">
-
-        <img id="avatar" src="../assests/images/placeholder/100%20x%20100%20px.png" alt="Author Image">
-        <figcaption>Author Image</figcaption>
-
-          <h2 id="blog_title">Blog Title</h2>
-
-        <h2 class="author_info" id="author_name">Omegea Hunter</h2>
-
-        <blockquote class="author_info" id="author_bio">ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit</blockquote>
-
-        <p class="author_info" id="author_comp">Fierce Peace </p>
-
-    </div>
-
-    </div>
 
 
-</div>
-
-
-<div id="header-nav">
-<h1> Header Component</h1>
+<header>
+    <div id="header-nav">
+<h1> Header Nav</h1>
         <nav >
              <ul>
                 <li ><a href="#home">Home</a></li>
@@ -52,6 +23,32 @@
         </nav>
 </div>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Navbar with Breadcrumbs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#">Home</a></li>
+            <li class="nav-item"><a href="#">About</a></li>
+            <li class="nav-item"><a href="#">Services</a></li>
+            <li class="nav-item"><a href="#">Contact</a></li>
+        </ul>
+        <div class="breadcrumb">
+            <a href="#">Home</a> / 
+            <a href="#">Services</a> / 
+            <span>Current Page</span>
+        </div>
+    </nav>
+</body>
+</html>
+
+
 <div id="seach-bar">
 <h1> Search Bar Component </h1>
          <form action="/search" method="get">
@@ -59,6 +56,7 @@
     <button>Search</button>
         </form>
 </div>
+</header>
 
 <div id="banner">
 <h1> Banner Component</h1>
@@ -190,56 +188,102 @@
         </h2>
 <div id="carousel" class="carousel">
 
-    <div class="card">
-            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
-            <h3>Blog Title</h3>
-            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
-        <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
-        </div>
+     <article>
+    <header>
+        <span class="date">April 22, 2017</span>
+        <h2><a href="pages/blog-post.html">Primis eget<br />imperdiet lorem</a></h2>
+    </header>
+    <a href="pages/blog-post.html" class="image fit">  <img src="assests/images/placeholder/200%20x%20200%20px.png" alt="200x200 placeholder"/></a>
+    <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+    <ul class="actions special">
+        <li><a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button>></a></li>
+    </ul>
+    </article>
 
-        <div class="card">
-            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
-            <h3>Blog Title</h3>
-            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
-            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
-        </div>
+        <article>
+    <header>
+        <span class="date">April 22, 2017</span>
+        <h2><a href="pages/blog-post.html">Primis eget<br />imperdiet lorem</a></h2>
+    </header>
+    <a href="pages/blog-post.html" class="image fit">  <img src="assests/images/placeholder/200%20x%20200%20px.png" alt="200x200 placeholder"/></a>
+    <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+    <ul class="actions special">
+        <li><a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button>></a></li>
+    </ul>
+    </article>
 
-        <div class="card">
-            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
-            <h3>Blog Title</h3>
-            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
-            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
-        </div>
+        <article>
+    <header>
+        <span class="date">April 22, 2017</span>
+        <h2><a href="pages/blog-post.html">Primis eget<br />imperdiet lorem</a></h2>
+    </header>
+    <a href="pages/blog-post.html" class="image fit">  <img src="assests/images/placeholder/200%20x%20200%20px.png" alt="200x200 placeholder"/></a>
+    <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+    <ul class="actions special">
+        <li><a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button>></a></li>
+    </ul>
+    </article>
 
-        <div class="card">
-            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
-            <h3>Blog Title</h3>
-            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
-            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
-        </div>
+         <article>
+    <header>
+        <span class="date">April 22, 2017</span>
+        <h2><a href="pages/blog-post.html">Primis eget<br />imperdiet lorem</a></h2>
+    </header>
+    <a href="pages/blog-post.html" class="image fit">  <img src="assests/images/placeholder/200%20x%20200%20px.png" alt="200x200 placeholder"/></a>
+    <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+    <ul class="actions special">
+        <li><a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button>></a></li>
+    </ul>
+    </article>
 
-        <div class="card">
-            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
-            <h3>Blog Title</h3>
-            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
-            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
-        </div>
+       <article>
+    <header>
+        <span class="date">April 22, 2017</span>
+        <h2><a href="pages/blog-post.html">Primis eget<br />imperdiet lorem</a></h2>
+    </header>
+    <a href="pages/blog-post.html" class="image fit">  <img src="assests/images/placeholder/200%20x%20200%20px.png" alt="200x200 placeholder"/></a>
+    <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+    <ul class="actions special">
+        <li><a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button>></a></li>
+    </ul>
+    </article>
 
-        <div class="card">
-            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
-            <h3>Blog Title</h3>
-            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
-            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
-        </div>
+         <article>
+    <header>
+        <span class="date">April 22, 2017</span>
+        <h2><a href="pages/blog-post.html">Primis eget<br />imperdiet lorem</a></h2>
+    </header>
+    <a href="pages/blog-post.html" class="image fit">  <img src="assests/images/placeholder/200%20x%20200%20px.png" alt="200x200 placeholder"/></a>
+    <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+    <ul class="actions special">
+        <li><a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button>></a></li>
+    </ul>
+    </article>
 
-        <div class="card">
-            <img src="../assests/images/placeholder/200%20x%20200%20px.png" alt="Image">
-            <h3>Blog Title</h3>
-            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
-            <a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button></a>
-        </div>
+       <article>
+    <header>
+        <span class="date">April 22, 2017</span>
+        <h2><a href="pages/blog-post.html">Primis eget<br />imperdiet lorem</a></h2>
+    </header>
+    <a href="pages/blog-post.html" class="image fit">  <img src="assests/images/placeholder/200%20x%20200%20px.png" alt="200x200 placeholder"/></a>
+    <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+    <ul class="actions special">
+        <li><a href="pages/blog-post.html"><button class="read-more" type="button">Read More</button>></a></li>
+    </ul>
+    </article>
 
 </div>
+  <div class="pagination">
+        <!--<a href="#" class="previous">Prev</a>-->
+        <a href="#" class="page active">1</a>
+        <a href="#" class="page">2</a>
+        <a href="#" class="page">3</a>
+        <span class="extra">&hellip;</span>
+        <a href="#" class="page">8</a>
+        <a href="#" class="page">9</a>
+        <a href="#" class="page">10</a>
+        <a href="#" class="next">Next</a>
+    </div>
 
     </section>
 
