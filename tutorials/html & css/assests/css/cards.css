@@ -1,0 +1,189 @@
+/*Cards*/
+.card{
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.card h3{
+    margin-top: 0;
+}
+
+.card p{
+    margin-top: 20px;
+}
+
+.card button{
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #cc5803;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.card button:hover{
+    background-color: #825965;
+}
+
+.card a{
+    color: #43701f;
+    text-decoration: none;
+}
+
+.card a:hover{
+    text-decoration: underline;
+}
+
+
+
+.card ul{
+    margin-top: 20px;
+}
+
+.card ul li{
+    font-size: 1rem;
+}
+
+.card ol{
+    margin-top: 20px;
+}
+
+.card ol li{
+    font-size: 1rem;
+}
+
+.card dl{
+    margin-top: 20px;
+}
+
+.card dl dt{
+    font-weight: bold;
+}
+
+.card dl dd{
+    margin-left: 20px;
+}
+
+.card blockquote{
+    margin-top: 20px;
+}
+
+.card blockquote p{
+    font-size: 1rem;
+}
+
+.card blockquote cite{
+    font-size: 0.8rem;
+}
+
+.card q{
+    font-size: 1rem;
+}
+
+.card q cite{
+    font-size: 0.8rem;
+}
+
+.card table{
+    margin-top: 20px;
+}
+
+.card table thead{
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.card table th{
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.card table td{
+    padding: 10px 20px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.card table tr:hover{
+    background-color: #f1f1f1;
+}
+
+.card table tr{
+    background-color: #f1f1f1;
+
+}
+
+.card table tfoot{
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.card form{
+    margin-top: 20px;
+}
+
+.card form label{
+    font-size: 1rem;
+}
+
+.card form input{
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #dddad2;
+}
+
+.card form textarea{
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #dddad2;
+}
+
+.card form select{
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #dddad2;
+}
+
+.card form button{
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #cc5803;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.card form button:hover{
+    background-color: #825965;
+}
+
+.card form small{
+    font-size: 0.8rem;
+}
+
+.card pre{
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.card code{
+    background-color: #f1f1f1;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.card code.alt{
+    background-color: #f1f1f1;
+    padding: 5px;
+    border-radius: 5px;
+}

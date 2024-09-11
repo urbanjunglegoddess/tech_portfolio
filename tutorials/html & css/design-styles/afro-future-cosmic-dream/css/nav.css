@@ -1,0 +1,33 @@
+/* Cosmic Dream Navigation */
+
+.cosmic-dream-navbar {
+    background: linear-gradient(90deg, #4B0082, #9400D3);
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.cosmic-dream-navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cosmic-dream-navbar ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.cosmic-dream-navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.cosmic-dream-navbar ul li a:hover {
+    color: #FFD700;
+}

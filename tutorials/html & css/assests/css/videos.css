@@ -1,0 +1,69 @@
+/*Video*/
+video{
+    width: 100%;
+    margin-top: 20px;
+}
+
+video.left{
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+video.right{
+    float: right;
+    margin: 0 0 20px 20px;
+}
+
+video.center{
+    display: block;
+    margin: 0 auto;
+}
+
+video.circle{
+    border-radius: 50%;
+}
+
+video.rounded{
+    border-radius: 10px;
+}
+
+video.thumbnail{
+    border-radius: 20px;
+}
+
+video.responsive{
+    width: 100%;
+    height: auto;
+}
+
+video.responsive.small{
+    width: 50%;
+    height: auto;
+}
+
+video.responsive.large{
+    width: 100%;
+    height: auto;
+}
+
+video.responsive.medium{
+    width: 75%;
+    height: auto;
+}
+
+video.responsive.xlarge{
+    width: 100%;
+    height: auto;
+}
+
+video.responsive.xsmall{
+    width: 25%;
+    height: auto;
+}
+
+video.video fit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

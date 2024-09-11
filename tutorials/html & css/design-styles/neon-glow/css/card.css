@@ -1,0 +1,72 @@
+/* Neon Glow Style */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.neon-glow {
+    background-color: #0d0d0d;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.5);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    position: relative;
+    border: 2px solid #00FFFF;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #00FFFF;
+    margin-bottom: 1rem;
+    border-radius: 15px 15px 0 0;
+}
+
+.neon-glow .card-header h2 {
+    margin: 0;
+    padding-bottom: 1rem;
+    font-size: 1.8rem;
+    color: #00FFFF;
+    text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
+}
+
+.neon-glow .card-body p {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.neon-glow .card-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.neon-glow .card-button {
+    background-color: #00FFFF;
+    color: #0d0d0d;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
+}
+
+.neon-glow .card-button:hover {
+    background-color: #0d0d0d;
+    color: #00FFFF;
+    box-shadow: 0 0 20px #00FFFF, 0 0 40px #00FFFF;
+}

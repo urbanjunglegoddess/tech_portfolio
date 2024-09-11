@@ -1,0 +1,13 @@
+/*Definition List*/
+
+dl{
+    margin-top: 20px;
+}
+
+dt{
+    font-weight: bold;
+}
+
+dd{
+    margin-left: 20px;
+}

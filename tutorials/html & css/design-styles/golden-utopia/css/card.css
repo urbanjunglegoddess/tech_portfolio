@@ -1,0 +1,53 @@
+/* Golden Utopia Info Card */
+
+.golden-utopia {
+    background-color: #222;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #DAA520, 0 0 20px #FFD700;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    color: #FFD700;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #DAA520;
+}
+
+.golden-utopia .card-header h2 {
+    margin: 0;
+    padding-bottom: 1rem;
+    font-size: 1.8rem;
+    color: #FFD700;
+    text-shadow: 0 0 5px #FFD700;
+}
+
+.golden-utopia .card-body p {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.golden-utopia .card-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.golden-utopia .card-button {
+    background-color: #DAA520;
+    color: #222;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px #DAA520, 0 0 20px #FFD700;
+}
+
+.golden-utopia .card-button:hover {
+    background-color: #222;
+    color: #DAA520;
+    box-shadow: 0 0 20px #DAA520, 0 0 40px #FFD700;
+}

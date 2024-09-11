@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism Desgin</title>
+    <link rel="stylesheet" href="software_engineering/design-styles/glassmorph/ver1/css/main.css">
+</head>
+<body>
+
+<header class="header">
+  <h1>Glassmorphism Desgin
+  </h1>
+  <nav class="nav" 
+    aria-label="Main Navigation">
+      <a href="#" class="nav__link">Home</a>
+      <a href="#" class="nav__link">About</a>
+      <a href="#" class="nav__link">Contact</a>
+    </nav>
+<form action="/search" method="get">
+    <input type="search" id="site-search" name="site-search"
+           aria-label="Search through site content">
+    <button>Search</button>
+        </form>
+</header>
+
+
+<div class="card">
+  <header class="card-header">
+    <img src="https://placehold.co/50x50" alt="Avatar" class="avatar">
+    <h3>John Doe</h3>
+  </header>
+  <div class="card-body">
+    <img src="https://placehold.co/100x100" alt="Image">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus incidunt voluptates architecto quisquam, quia, quaerat, natus, libero cumque! Minima, quibusdam.</p>
+  </div>
+  <footer class="card-footer">
+    <a href="#" class="button">Read more</a>
+    <a href="#" class="button">Share</a>
+  </footer>
+</div>
+
+
+<div class="banner">
+    <header class="card-header">
+      <img src="https://placehold.co/50x50" alt="Avatar" class="avatar">
+      <h3>John Doe</h3>
+    </header>
+    <div class="card-body">
+      <img src="https://placehold.co/100x100" alt="Image">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus incidunt voluptates architecto quisquam, quia, quaerat, natus, libero cumque! Minima, quibusdam.</p>
+    </div>
+    <footer class="card-footer">
+      <a href="#" class="button">Read more</a>
+      <a href="#" class="button">Share</a>
+    </footer>
+  </div>
+  

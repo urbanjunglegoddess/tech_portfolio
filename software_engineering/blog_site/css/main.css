@@ -1,9 +1,66 @@
-@import url('core.css');
 @import url('header.css');
 @import url('footer.css');
-@import url('post.css');
+@import url('author-info.css');
 @import url('responsive.css');
 @import url('cards.css');
+@import url('carousel.css');
+@import url('feature-post.css');
+
+
+body{
+   background-color: #dddad2ff;
+}
+
+div{
+ padding: 10px;
+}
+
+
+input{
+    padding: 10px 16px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: solid 1px #ccc;
+}
+textarea{
+    padding: 10px 16px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: solid 1px #ccc;
+}
+
+
+
+/* Elements */
+h1{
+ font: small-caps 28px Georgia;
+}
+h2{
+ font: oblique 20px Optima;
+}
+h3{}
+h4{}
+h5{}
+h6{}
+p{
+ font: 18px "Times New Roman";
+}
+a{
+    text-decoration: none;
+    color: rgba(47, 25, 95, 1);
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ol{}
+li {
+
+}
+span{}
 
 
 form {

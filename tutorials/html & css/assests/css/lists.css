@@ -1,0 +1,127 @@
+/*Lists*/
+ul{
+    list-style-type: disc;
+    margin-top: 20px;
+}
+
+ul li{
+    font-size: 1rem;
+}
+
+
+ol{
+    list-style-type: decimal;
+    margin-top: 20px;
+}
+
+ol li{
+    font-size: 1rem;
+}
+
+
+li{
+    font-size: 1rem;
+}
+
+
+.row
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+div .col-6 col-12 small{
+    flex: 30%;
+    padding: 0 10px;
+}
+
+ul.alt {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+ul.alt li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+ul.alt li:last-child {
+    border-bottom: none;
+}
+
+ul.alt li a {
+    color: #43701f;
+    text-decoration: none;
+}
+
+ul.alt li a:hover {
+    text-decoration: underline;
+}
+
+ul.alt li span {
+    color: #43701f;
+}
+
+ul.alt li span a {
+    color: #43701f;
+    text-decoration: none;
+}
+
+ul.alt li span a:hover {
+    text-decoration: underline;
+}
+
+ul.alt li span a::after {
+    content: '>';
+    margin: 0 10px;
+}
+
+ul.icons {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+ul.icons li {
+    margin: 0 10px;
+}
+
+ul.icons li a {
+    color: #43701f;
+    text-decoration: none;
+}
+
+ul.icons li a:hover {
+    text-decoration: underline;
+}
+
+ul.icon brands{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+ul.label{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+ul.span{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

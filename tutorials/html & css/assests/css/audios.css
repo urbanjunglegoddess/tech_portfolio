@@ -1,0 +1,63 @@
+/*Audio*/
+
+audio{
+    width: 100%;
+    margin-top: 20px;
+}
+
+audio.left{
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+audio.right{
+    float: right;
+    margin: 0 0 20px 20px;
+}
+
+audio.center{
+    display: block;
+    margin: 0 auto;
+}
+
+audio.circle{
+    border-radius: 50%;
+}
+
+audio.rounded{
+    border-radius: 10px;
+}
+
+audio.thumbnail{
+    border-radius: 20px;
+}
+
+audio.responsive{
+    width: 100%;
+    height: auto;
+}
+
+audio.responsive.small{
+    width: 50%;
+    height: auto;
+}
+
+audio.responsive.large{
+    width: 100%;
+    height: auto;
+}
+
+audio.responsive.medium{
+    width: 75%;
+    height: auto;
+}
+
+audio.responsive.xlarge{
+    width: 100%;
+    height: auto;
+}
+
+audio.responsive.xsmall{
+    width: 25%;
+    height: auto;
+}

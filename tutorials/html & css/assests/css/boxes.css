@@ -1,0 +1,152 @@
+/*Boxes*/
+.box{
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.box.alt{
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.box.alt h3{
+    margin-top: 0;
+}
+
+.box.alt p{
+    margin-top: 20px;
+}
+
+.box.alt ul{
+    margin-top: 20px;
+}
+
+.box.alt ul li{
+    font-size: 1rem;
+}
+
+.box.alt ol{
+    margin-top: 20px;
+}
+
+.box.alt ol li{
+    font-size: 1rem;
+}
+
+.box.alt dl{
+    margin-top: 20px;
+}
+
+.box.alt dl dt{
+    font-weight: bold;
+}
+
+.box.alt dl dd{
+    margin-left: 20px;
+}
+
+.box.alt blockquote{
+    margin-top: 20px;
+}
+
+.box.alt blockquote p{
+    font-size: 1rem;
+}
+
+.box.alt blockquote cite{
+    font-size: 0.8rem;
+}
+
+.box.alt q{
+    font-size: 1rem;
+}
+
+.box.alt q cite{
+    font-size: 0.8rem;
+}
+
+.box.alt table{
+    margin-top: 20px;
+}
+
+.box.alt table thead{
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.box.alt table th{
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.box.alt table td{
+    padding: 10px 20px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.box.alt table tr:hover{
+    background-color: #f1f1f1;
+}
+
+.box.alt table tr{
+    background-color: #f1f1f1;
+
+}
+
+.box.alt table tfoot{
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.box.alt form{
+    margin-top: 20px;
+}
+
+.box.alt form label{
+    font-size: 1rem;
+}
+
+.box.alt form input{
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #dddad2;
+}
+
+.box.alt form textarea{
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #dddad2;
+}
+
+.box.alt form select{
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #dddad2;
+}
+
+.box.alt form button{
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #cc5803;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.box.alt form button:hover{
+    background-color: #825965;
+}
+
+.box.alt form small{
+    font-size: 0.8rem;
+}
