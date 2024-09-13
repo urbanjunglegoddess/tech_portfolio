@@ -1,7 +1,7 @@
 .author {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* This creates 2 equal columns */
-    grid-gap: 20px; /* This adds some space between the grid items */
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
 }
 
 #avatar {

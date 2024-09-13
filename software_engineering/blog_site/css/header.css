@@ -1,4 +1,7 @@
 /* Header */
+header {
+}
+
 /* Hero Banner */
 .hero {
     background-image: url('../assests/images/logo.png');
@@ -64,14 +67,82 @@
     text-decoration: underline;
 }
 
+
+.site-header {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-color: #43701f;
+    border-bottom: 2px solid #ccc;
+}
+
+.logo-container {
+    flex: 0 1 auto;
+}
+
+.site-logo {
+    width: 100px;
+    height: auto;
+}
+
+/* Breadcrumb Styles */
+.breadcrumb-nav {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.breadcrumb {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-item {
+    margin: 0 5px;
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: #dddad2ff;  /* Fern Green */
+    font-weight: bold;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-item::after {
+    content: ">";
+    margin-left: 10px;
+    color: #825965;  /* Rose Taupe */
+}
+
+.breadcrumb-item:last-child::after {
+    content: "";
+}
+
+.breadcrumb-item.active {
+    color: #cc912dff;  /* Rose Taupe */
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.breadcrumb-item.active a {
+    color: inherit;
+}
+
 /* Search Bar */
 .search-bar {
     display: flex;
     align-items: center;
+    flex: 0 1 auto;
 }
 
 .search-bar input {
-    padding: 10px;
+    padding: 5px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -80,18 +151,15 @@
 
 .search-bar button {
     margin-left: 10px;
-    padding: 10px 20px;
+   padding: 5px 10px;
     background-color: #cc5803; /* Tawny button */
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    font-size: 1rem;
 }
 
 .search-bar button:hover {
     background-color: #cc912d; /* Harvest Gold on hover */
 }
-/* Media Query */
-@media (max-width: 768px) {
 
-}

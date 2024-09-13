@@ -2,148 +2,209 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omegea Blog Post</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Blog Post</title>
     <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body>
-<header>
+<header class="site-header">
+    <div class="logo-container">
+        <a href="../index.html">
+            <img alt="Site Logo" class="site-logo" src="../assests/images/logo.png">
+        </a>
+    </div>
 
- <nav>
-            <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-            </ul>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="stories.html">Stories</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Blog Post Title</li>
+        </ol>
         </nav>
 
-        <h1>Black Unscripted Adventures</h1>
+        <div class="search-bar">
+            <form action="/search" method="get">
+                <input aria-label="Search through site content" id="site-search" name="site-search"
+                       placeholder="Search..."
+                       type="search">
+                <button>Search</button>
+            </form>
+        </div>
+
+</header>
 
 
-    <!-- author info -->
+<!-- author info -->
+
+
+<main>
+    <h2 id="blog_title">Blog Title</h2>
+
     <div class="author">
 
-        <img id="avatar" src="../assests/images/placeholder/100%20x%20100%20px.png" alt="Author Image">
+        <img alt="Author Image" id="avatar" src="../assests/images/stock/avatar_woman.png">
         <figcaption>Author Image</figcaption>
-
-          <h2 id="blog_title">Blog Title</h2>
 
         <h2 class="author_info" id="author_name">Omegea Hunter</h2>
 
-        <blockquote class="author_info" id="author_bio">ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit</blockquote>
+        <blockquote class="author_info" id="author_bio">ac turpis egestas sed tempus urna et pharetra pharetra massa
+            massa ultricies mi quis hendrerit
+        </blockquote>
 
         <p class="author_info" id="author_comp">Fierce Peace </p>
 
     </div>
-    </header>
+    <section id="blog_post">
+
+        <div >
+            <img class="left-img" src="../assests/images/stock/1.jpg" alt="Skyrise building encompassed in greenery"><!--<figcaption>Skyrise building encompassed in greenery</figcaption>-->
+        </div>
+        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Nec morbi adipiscing commodo sed laoreet faucibus. Cubilia cursus nunc posuere pharetra hendrerit nunc velit nisi. Sociosqu pellentesque vitae nisl congue facilisi. Urna nam at nec in duis. Consequat platea accumsan dignissim porta ligula habitant felis. Maximus molestie integer donec hac quisque.
+
+Est amet pharetra sagittis interdum laoreet auctor egestas. Pulvinar euismod lacus inceptos fusce diam ligula. Fames torquent vitae natoque; semper lectus cras. Gravida auctor euismod ornare donec mauris morbi montes bibendum. Porttitor at feugiat; nunc eros facilisis nunc taciti. Habitasse lectus risus ut ridiculus suspendisse; nec vivamus magna. Lorem rhoncus ornare curae id euismod conubia enim torquent. Scelerisque metus ac habitasse arcu phasellus nulla natoque.
+
+</p>
 
 
-<main>
-
-        <section id="blog_post">
-
-            <p>lacus luctus accumsan tortor posuere ac ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit amet justo donec enim</p>
-
-
-            <ul class="blog-list">
-                <li>Blog List Item</li>
-                <li>Blog List Item</li>
-                <li>Blog List Item</li>
-                <li>Blog List Item</li>
-            </ul>
+        <ul class="blog-list">
+            <li><h4><a href="#blog-item-1">Blog List Item</a></h4></li>
+           <li><h4><a href="#blog-item-2">Blog List Item</a></h4></li>
+           <li><h4><a href="#blog-item-3">Blog List Item</a></h4></li>
+           <li><h4><a href="#blog-item-4">Blog List Item</a></h4></li>
+        </ul>
 
 
-            <p>Risus quis varius quam quisque id diam vel quam elementum pulvinar etiam non quam lacus suspendisse faucibus interdum posuere lorem ipsum <b> dolor sit amet consectetur adipiscing elit duis </b> tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum a</p>
+        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Nec morbi adipiscing commodo sed laoreet faucibus. Cubilia cursus nunc posuere pharetra hendrerit nunc velit nisi. Sociosqu pellentesque vitae nisl congue facilisi. Urna nam at nec in duis. Consequat platea accumsan dignissim porta ligula habitant felis. Maximus molestie integer donec hac quisque.
 
-            <p>Quam pellentesque nec <u>nam aliquam sem et tortor consequat id porta </u> nibh venenatis cras sed felis eget velit aliquet sagittis</p>
+Est amet pharetra sagittis interdum laoreet auctor egestas. Pulvinar euismod lacus inceptos fusce diam ligula. Fames torquent vitae natoque; semper lectus cras. Gravida auctor euismod ornare donec mauris morbi montes bibendum. Porttitor at feugiat; nunc eros facilisis nunc taciti. Habitasse lectus risus ut ridiculus suspendisse; nec vivamus magna. Lorem rhoncus ornare curae id euismod conubia enim torquent. Scelerisque metus ac habitasse arcu phasellus nulla natoque.
 
-            <p>Sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh <u> mauris cursus mattis molestie a iaculis at erat pellentesque adipiscing</u> commodo elit at imperdiet dui accumsan sit amet nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu <b>ac tortor dignissim convallis</b> aenean</p>
+</p>
 
-            <ol class="blog-list" >
-                <li>Blog List Item</li>
-                <ul>
-                    <li>vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat semper viverra</li>
-                </ul>
-                <li>Blog List Item</li>
-                <ul>
-                    <li>vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat semper viverra</li>
-
-                    <li>vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat semper viverra</li>
-
-                </ul>
-                <li>Blog List Item</li>
-                <ul>
-                    <li>vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat semper viverra</li>
-                </ul>
-                <li>Blog List Item</li>
-                <ul>
-                    <li>vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat semper viverra</li>
-
-                    <li>vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat semper viverra</li>
-
-                    <li>vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat semper viverra</li>
-                </ul>
-            </ol>
-
-        </section>
-        <div id="banner">
-            <img class="banner_img" src="../assests/images/placeholder/1080%20x%20200%20px.png" atl="placeholder">
-            <p> </p>
+        <div >
+            <img class="right-img" src="../assests/images/stock/2.jpg" alt="Sunset behind a cityscape"><!--<figcaption>Sunset behind a cityscape</figcaption>-->
         </div>
 
-        <section id="comments">
-            <h2>Comments</h2>
-            <div class="comment">
-                <h3>Commenter Name</h3>
-                <p>duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus</p>
-            </div>
-            <div class="comment">
-                <h3>Commenter Name</h3>
-                <p>duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus</p>
-            </div>
-            <div class="comment">
-                <h3>Commenter Name</h3>
-                <p>duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus</p>
-            </div>
-            <div class="comment">
-                <h3>Commenter Name</h3>
-                <p>duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus</p>
-            </div>
-        </section>
+        <p>Quam pellentesque nec <u>nam aliquam sem et tortor consequat id porta </u> nibh venenatis cras sed felis eget
+            velit aliquet sagittis</p>
 
-        <section id="comment_form">
-            <h2>Leave a Comment</h2>
-            <form action="post">
-                <label for="commenter_name">Name:</label>
-                <input type="text" id="commenter_name" name="name" required>
-                <label for="comment">Comment:</label>
-                <textarea id="comment" name="comment" required></textarea>
-                <input type="submit" value="Submit">
-            </form>
-        </section>
+        <p>Sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh <u> mauris cursus mattis
+            molestie a iaculis at erat pellentesque adipiscing</u> commodo elit at imperdiet dui accumsan sit amet nulla
+            facilisi morbi tempus iaculis urna id volutpat lacus laoreet non curabitur gravida arcu <b>ac tortor
+                dignissim convallis</b> aenean</p>
+
+
+        <h4 id="blog-item-1"> Blog List Item</h4>
+        <ul>
+            <li>Lorem ipsum odor amet, consectetuer adipiscing elit. Molestie eros natoque dignissim fermentum bibendum. Nibh vestibulum elit venenatis consectetur velit. Nascetur velit nullam netus ante torquent. Volutpat vestibulum integer habitasse, aptent conubia pretium. Curae mauris duis curabitur natoque lacus?
+            </li>
+        </ul>
+
+        <div >
+            <img alt="placeholder" class="left-img" src="../assests/images/stock/1.jpg" alt="Skyrise building encompassed in greenery"><figcaption>Skyrise building encompassed in greenery</figcaption>
+        </div>
+
+        <h4 id="blog-item-2"> Blog List Item</h4>
+        <ul>
+            <li>Lorem ipsum odor amet, consectetuer adipiscing elit. Molestie eros natoque dignissim fermentum bibendum. Nibh vestibulum elit venenatis consectetur velit. Nascetur velit nullam netus ante torquent. Volutpat vestibulum integer habitasse, aptent conubia pretium. Curae mauris duis curabitur natoque lacus?
+            </li>
+
+            <li>Lorem ipsum odor amet, consectetuer adipiscing elit. Molestie eros natoque dignissim fermentum bibendum. Nibh vestibulum elit venenatis consectetur velit. Nascetur velit nullam netus ante torquent. Volutpat vestibulum integer habitasse, aptent conubia pretium. Curae mauris duis curabitur natoque lacus?
+            </li>
+        </ul>
+        <h4 id="blog-item-3"> Blog List Item</h4>
+        <ul>
+            <li>
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Molestie eros natoque dignissim fermentum bibendum. Nibh vestibulum elit venenatis consectetur velit. Nascetur velit nullam netus ante torquent. Volutpat vestibulum integer habitasse, aptent conubia pretium. Curae mauris duis curabitur natoque lacus?
+            </li>
+        </ul>
+        <div >
+            <img class="right-img" src="../assests/images/stock/2.jpg" alt="Sunset behind a cityscape"><!--<figcaption>Sunset behind a cityscape</figcaption>-->
+        </div>
+        <h4 id="blog-item-4"> Blog List Item</h4>
+        <ul>
+            <li>Lorem ipsum odor amet, consectetuer adipiscing elit. Molestie eros natoque dignissim fermentum bibendum. Nibh vestibulum elit venenatis consectetur velit. Nascetur velit nullam netus ante torquent. Volutpat vestibulum integer habitasse, aptent conubia pretium. Curae mauris duis curabitur natoque lacus?
+            </li>
+
+            <li>Lorem ipsum odor amet, consectetuer adipiscing elit. Molestie eros natoque dignissim fermentum bibendum. Nibh vestibulum elit venenatis consectetur velit. Nascetur velit nullam netus ante torquent. Volutpat vestibulum integer habitasse, aptent conubia pretium. Curae mauris duis curabitur natoque lacus?
+            </li>
+
+            <li>Lorem ipsum odor amet, consectetuer adipiscing elit. Molestie eros natoque dignissim fermentum bibendum. Nibh vestibulum elit venenatis consectetur velit. Nascetur velit nullam netus ante torquent. Volutpat vestibulum integer habitasse, aptent conubia pretium. Curae mauris duis curabitur natoque lacus?
+            </li>
+        </ul>
+
+    </section>
+    <div >
+        <img alt="placeholder" class="banner" src="../assests/images/stock/banner.jpg">
+    </div>
+
+    <section id="comments">
+        <h2>Comments</h2>
+        <div class="comment">
+            <h3>Commenter Name</h3>
+            <p>duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus</p>
+        </div>
+        <div class="comment">
+            <h3>Commenter Name</h3>
+            <p>duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus</p>
+        </div>
+        <div class="comment">
+            <h3>Commenter Name</h3>
+            <p>duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus</p>
+        </div>
+        <div class="comment">
+            <h3>Commenter Name</h3>
+            <p>duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus</p>
+        </div>
+    </section>
+
+    <section id="comment_form">
+        <h2>Leave a Comment</h2>
+        <form action="post">
+            <label for="commenter_name">Name:</label>
+            <input id="commenter_name" name="name" required type="text">
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" required></textarea>
+            <input type="submit" value="Submit">
+        </form>
+    </section>
 </main>
 
 <footer>
-    <h2>Contact Me</h2>
-    <form action="submit">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message"></textarea>
-        <input type="submit" value="Submit">
-    </form>
 
-    <p>Follow me on social media:</p>
-    <ul>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Twitter</a></li>
-        <li><a href="#">Instagram</a></li>
-    </ul>
+    <div class="footer-grid">
+
+        <h3>Black Unscripted Adventures</h3>
+
+        <div class="social-media">
+            <ul>
+                <li><a href="facebook.com">Facebook</a></li>
+                <li><a href="twitter.com">Twitter</a></li>
+                <li><a href="instagram.com">Instagram</a></li>
+            </ul>
+        </div>
+
+        <div class="subscribe-form">
+            <form action="/subscribe" class="subscribe-form" method="post">
+                <label for="subscribe-email">Subscribe to our newsletter:</label>
+                <input id="subscribe-email" name="subscribe-email" placeholder="Your email" type="email">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        <!--<nav>-->
+        <!--    <ul>-->
+        <!--        <li><a href="index.html">Home</a></li>-->
+        <!--        <li><a href="pages/about.html">About</a></li>-->
+        <!--        <li><a href="pages/stories.html">Stories</a></li>-->
+        <!--        <li><a href="#../contact-form">Contact</a></li>-->
+        <!--    </ul>-->
+        <!--</nav>-->
+
+    </div>
+
 </footer>
 
 </body>
-
 
 
 </html>

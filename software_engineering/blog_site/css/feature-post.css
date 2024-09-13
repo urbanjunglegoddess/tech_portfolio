@@ -4,8 +4,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 65%;  /* 65% of the container */
-    margin: 50px auto;  /* Centered in the container */
+    max-width: 65%;
+    margin: 50px auto;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -14,7 +14,7 @@
 
 /* Date styling - on top of the section */
 .post-featured .date {
-    font-size: 1rem; /* Same size as paragraph */
+    font-size: 1rem;
     color: #999;
     margin-bottom: 15px;
     display: block;
@@ -22,14 +22,14 @@
 
 /* Title Styling */
 .post-featured h2 {
-    font-size: 2.5rem; /* Large title */
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 10px;
     line-height: 1.2;
 }
 
 .post-featured h2 a {
-    color: #2f195f; /* Russian Violet */
+    color: #2f195f;
     text-decoration: none;
 }
 
@@ -72,19 +72,4 @@
 .post-featured .actions .button:hover {
     background-color: #cc5803;
     color: white;
-}
-
-/* Media Queries for Responsive Design */
-@media (max-width: 768px) {
-    .post-featured {
-        max-width: 90%;  /* Increase the width on smaller screens */
-    }
-
-    .post-featured h2 {
-        font-size: 2rem;  /* Adjust title size for small screens */
-    }
-
-    .post-featured p {
-        font-size: 0.9rem;  /* Adjust paragraph size for small screens */
-    }
 }
