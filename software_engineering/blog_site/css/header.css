@@ -4,7 +4,7 @@ header {
 
 /* Hero Banner */
 .hero {
-    background-image: url('../assests/images/logo.png');
+    background-image: url('../assets/images/logo.png');
     background-size: cover;
     background-position: center;
     height: 700px;

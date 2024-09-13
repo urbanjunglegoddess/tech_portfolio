@@ -178,11 +178,6 @@ ul li {
     border: 2px solid #cc5803; /* Tawny */
 }
 
-.author-details {
-    display: flex;
-    flex-direction: column;
-}
-
 .author-details h2 {
     margin: 5px 0;
     color: #2f195f; /* Russian Violet */
