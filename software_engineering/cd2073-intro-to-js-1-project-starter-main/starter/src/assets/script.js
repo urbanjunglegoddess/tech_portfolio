@@ -76,13 +76,25 @@ function increaseQuantity(productId) {
   - if the function decreases the quantity to 0, the product is removed from the cart
 */
 
+// function decreaseQuantity(productId) {
+//     const product = products.find(p => p.productId === productId);
+//     if (product && product.quantity > 0) {
+//         product.quantity -= 1;
+//     }
+// }
+
 function decreaseQuantity(productId) {
     const product = products.find(p => p.productId === productId);
     if (product && product.quantity > 0) {
         product.quantity -= 1;
+        if (product.quantity === 0) {
+            const index = cart.indexOf(product);
+            if (index > -1) {
+                cart.splice(index, 1);
+            }
+        }
     }
 }
-
 
 /* Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
@@ -163,7 +175,7 @@ module.exports = {
    decreaseQuantity,
    removeProductFromCart,
    cartTotal,
-   pay, 
+   pay,
    emptyCart,
    /* Uncomment the following line if completing the currency converter bonus */
    // currency
